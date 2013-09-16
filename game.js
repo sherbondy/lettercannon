@@ -1,6 +1,11 @@
 /*{{ javascript("jslib/draw2d.js") }}*/
+/*{{ javascript("jslib/physics2ddevice.js") }}*/
+/*{{ javascript("jslib/boxtree.js") }}*/
 
 // to build: makehtml --mode canvas-debug -t . game.js -o game.debug.html
+
+
+var rotateAngle = 0;
 
 /* Game code goes here */
 TurbulenzEngine.onload = function onloadFn()
@@ -9,11 +14,18 @@ TurbulenzEngine.onload = function onloadFn()
   var graphicsDevice = TurbulenzEngine.createGraphicsDevice({});
   var inputDevice = TurbulenzEngine.createInputDevice({});
   var md = TurbulenzEngine.createMathDevice({});
+  var phys2D = Physics2DDevice.create();
 
   inputDevice.addEventListener('mouseover', handleMouse);
 
   var draw2D = Draw2D.create({
       graphicsDevice: graphicsDevice
+  });
+
+  var world = phys2D.createWorld({
+    gravity : [0, 0],
+    velocityIterations : 8,
+    positionIterations : 8
   });
 
   var x1 = 50;
@@ -37,6 +49,15 @@ TurbulenzEngine.onload = function onloadFn()
       rotation: Math.PI / 4
   });
 
+  var letter = Draw2DSprite.create({
+    width: 50,
+    height: 50,
+    x: graphicsDevice.width / 2,
+    y: graphicsDevice.height / 2,
+    color: [0,0,0,1],
+    rotation: 0
+  });
+
   // texture dimensions must be powers of 2
   var texture = graphicsDevice.createTexture({
       src: "assets/textures/particle_spark.png",
@@ -51,11 +72,14 @@ TurbulenzEngine.onload = function onloadFn()
       }
   });
 
-  var rotateAngle = 0;
   var scale = [1, 1];
 
   var r = 1.0, g = 1.0, b = 0.0, a = 1.0;
   var bgColor = [r, g, b, a];
+
+  var PI2 = 2*Math.PI;
+  var upVec = md.v2Build(0, 1.0);
+  var mouseVec = md.v2Build(0, 1.0);
 
   function update() {
     /* Update code goes here */
@@ -83,10 +107,8 @@ TurbulenzEngine.onload = function onloadFn()
     }
   }
 
-  var PI2 = 2*Math.PI;
-  var upVec = md.v2Build(0,1.0);
   function handleMouse(x, y) {
-    var mouseVec = md.v2Normalize(md.v2Build(x-sprite.x, y-sprite.y));
+    mouseVec = md.v2Normalize(md.v2Build(x-sprite.x, y-sprite.y));
     rotateAngle = Math.acos(md.v2Dot(upVec, mouseVec));
     if (mouseVec[0] > 0){
       rotateAngle = PI2 - rotateAngle;
