@@ -7,6 +7,10 @@ TurbulenzEngine.onload = function onloadFn()
 {
   var intervalID;
   var graphicsDevice = TurbulenzEngine.createGraphicsDevice({});
+  var inputDevice = TurbulenzEngine.createInputDevice({});
+  var md = TurbulenzEngine.createMathDevice({});
+
+  inputDevice.addEventListener('mouseover', handleMouse);
 
   var draw2D = Draw2D.create({
       graphicsDevice: graphicsDevice
@@ -47,8 +51,7 @@ TurbulenzEngine.onload = function onloadFn()
       }
   });
 
-  var PI2 = Math.PI * 2;
-  var rotateAngle = Math.PI / 32;
+  var rotateAngle = 0;
   var scale = [1, 1];
 
   var r = 1.0, g = 1.0, b = 0.0, a = 1.0;
@@ -59,8 +62,7 @@ TurbulenzEngine.onload = function onloadFn()
     b += 0.01;
     bgColor[2] = b % 1; // Clamp color between 0-1
 
-    sprite.rotation += rotateAngle;
-    sprite.rotation %= PI2; //Wrap rotation at PI * 2
+    sprite.rotation = rotateAngle;
     scale[0] = scale[1] = Math.cos(sprite.rotation) + 2;
     sprite.setScale(scale);
 
@@ -79,6 +81,17 @@ TurbulenzEngine.onload = function onloadFn()
 
         graphicsDevice.endFrame();
     }
+  }
+
+  var PI2 = 2*Math.PI;
+  var upVec = md.v2Build(0,1.0);
+  function handleMouse(x, y) {
+    var mouseVec = md.v2Normalize(md.v2Build(x-sprite.x, y-sprite.y));
+    rotateAngle = Math.acos(md.v2Dot(upVec, mouseVec));
+    if (mouseVec[0] > 0){
+      rotateAngle = PI2 - rotateAngle;
+    }
+    console.log(rotateAngle);
   }
 
   // 60 fps
