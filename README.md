@@ -22,3 +22,8 @@ letters = {0: [1, 3, 10]}
 
 Elizabeth also has access to the letter object data structure.
 Letter objects are Draw2DSprites (or slight variants of them)
+
+
+Initial game mechanics:
+- Pieces radiate outward when the letters above them are cleared
+-
