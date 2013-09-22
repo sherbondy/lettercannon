@@ -1,9 +1,23 @@
-/*{{ javascript("jslib/draw2d.js") }}*/
-/*{{ javascript("jslib/physics2ddevice.js") }}*/
-/*{{ javascript("jslib/boxtree.js") }}*/
+/*{# jslib files #}*/
+/*{{ javascript("../jslib/physics2ddevice.js") }}*/
+/*{{ javascript("../jslib/boxtree.js") }}*/
+/*{{ javascript("../jslib/draw2d.js") }}*/
 
-// to build: makehtml --mode canvas-debug -t . game.js -o game.debug.html
+/// <reference path="../jslib-modular/vmath.d.ts" />
+/// <reference path="../jslib-modular/canvas.d.ts" />
+/// <reference path="../jslib-modular/debug.d.ts" />
+/// <reference path="../jslib-modular/turbulenz.d.ts" />
+/// <reference path="../jslib-modular/aabbtree.d.ts" />
+/// <reference path="../jslib-modular/jsengine.d.ts" />
+/// <reference path="../jslib-modular/jsengine_base.d.ts" />
+/// <reference path="../jslib-modular/jsengine_debug.d.ts" />
+/// <reference path="../jslib-modular/fontmanager.d.ts" />
+/// <reference path="../jslib-modular/physics2d.d.ts" />
+/// <reference path="../jslib-modular/tzdraw2d.d.ts" />
+/// <reference path="../jslib-modular/utilities.d.ts" />
 
+/*{# our scripts #}*/
+/// <reference path="main.ts" />
 
 var rotateAngle = 0;
 

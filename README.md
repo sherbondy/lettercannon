@@ -1,12 +1,19 @@
 #How to use
 
 - Install the Turbulenz SDK: https://hub.turbulenz.com/#downloads (requires login).
-- Modify the `game.js` file, then run:
+- Make sure you are using typescript version 0.8! `tsc --version`:
 ```
-makehtml --mode canvas-debug -t . game.js -o game.debug.html
+ sudo npm install -g typescript@0.8.3
+```
+- Modify the files in `tsscripts/lettercannon`, then run (from the root directory):
+
+```
+tsc -c --out templates/lettercannon.js tsscripts/lettercannon_entry.ts
+
+makehtml --mode canvas-debug -t templates -t . -o lettercannon.debug.html lettercannon.js
 ```
 
-- Run a static python server: python -m SimpleHTTPServer
+- Run a static python server: `python -m SimpleHTTPServer`
 - Visit http://localhost:8000/game.debug.html
 
 
