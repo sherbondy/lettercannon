@@ -42,17 +42,17 @@ TurbulenzEngine.onload = function onloadFn()
     positionIterations : 8
   });
 
-  var x1 = 50;
-  var y1 = 50;
-  var x2 = graphicsDevice.width - 50;
-  var y2 = graphicsDevice.height - 50;
-  // startx, starty, endx, endy
-  var rectangle = [x1, y1, x2, y2];
+  // var x1 = 50;
+  // var y1 = 50;
+  // var x2 = graphicsDevice.width - 50;
+  // var y2 = graphicsDevice.height - 50;
+  // // startx, starty, endx, endy
+  // var rectangle = [x1, y1, x2, y2];
 
-  var drawObject = {
-      color: [1.0, 0.0, 0.0, 1.0],
-      destinationRectangle: rectangle
-  };
+  // var drawObject = {
+  //     color: [1.0, 0.0, 0.0, 1.0],
+  //     destinationRectangle: rectangle
+  // };
 
   var sprite = Draw2DSprite.create({
       width: 50,
@@ -88,7 +88,7 @@ TurbulenzEngine.onload = function onloadFn()
 
   var scale = [1, 1];
 
-  var r = 1.0, g = 1.0, b = 0.0, a = 1.0;
+  var r = 0.0, g = 0.0, b = 0.0, a = 1.0;
   var bgColor = [r, g, b, a];
 
   var PI2 = 2*Math.PI;
@@ -97,8 +97,6 @@ TurbulenzEngine.onload = function onloadFn()
 
   function update() {
     /* Update code goes here */
-    b += 0.01;
-    bgColor[2] = b % 1; // Clamp color between 0-1
 
     sprite.rotation = rotateAngle;
 
@@ -108,7 +106,7 @@ TurbulenzEngine.onload = function onloadFn()
         /* Rendering code goes here */
 
         draw2D.begin(); // opaque
-        draw2D.draw(drawObject);
+
         draw2D.end();
 
         draw2D.begin('additive'); // additive makes dark colors transparent...
