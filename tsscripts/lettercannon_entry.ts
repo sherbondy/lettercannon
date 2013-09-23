@@ -41,8 +41,7 @@ var requestHandler = RequestHandler.create({
     }
 });
 
-var noop = function(args){
-};
+function noop(args){}
 
 /* Game code goes here */
 TurbulenzEngine.onload = function onloadFn()
