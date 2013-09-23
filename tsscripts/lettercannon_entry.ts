@@ -21,6 +21,7 @@
 /// <reference path="../jslib-modular/utilities.d.ts" />
 
 /*{# our scripts #}*/
+/// <reference path="letter.ts" />
 /// <reference path="main.ts" />
 
 var rotateAngle = 0;
@@ -39,13 +40,26 @@ var requestHandler = RequestHandler.create({
     }
 });
 
+var spriteRectangle = function(sprite: Draw2DSprite): number[] {
+    var origin = [];
+    sprite.getOrigin(origin);
+    var x = sprite.x + origin[0];
+    var y = sprite.y + origin[1];
+    var w = sprite.getWidth();
+    var h = sprite.getHeight();
+    return [x - w/2, y - w/2,
+            x + w/2, y + w/2];
+}
+
 var noop = function(args){
 };
 
-// only works for lowercase letters
-var letterIndex = function(letter){
-    return letter.charCodeAt(0) - 97;
-};
+var drawCircle = function(context, color, radius, centerX, centerY) {
+    context.beginPath();
+    context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+    context.fillStyle = color;
+    context.fill();
+}
 
 /* Game code goes here */
 TurbulenzEngine.onload = function onloadFn()
@@ -57,7 +71,9 @@ TurbulenzEngine.onload = function onloadFn()
     var phys2D = Physics2DDevice.create();
 
     var letterBucket = new LetterGenerator();
-    var currentLetter = letterBucket.generate();
+    var currentLetterObj = new Letter(letterBucket.generate(), 
+                                      graphicsDevice.width - 64,
+                                      graphicsDevice.height - 64);
 
     inputDevice.addEventListener('mouseover', handleMouse);
     inputDevice.addEventListener('mouseup', handleClick);
@@ -72,18 +88,6 @@ TurbulenzEngine.onload = function onloadFn()
         positionIterations : 8
     });
 
-    // var x1 = 50;
-    // var y1 = 50;
-    // var x2 = graphicsDevice.width - 50;
-    // var y2 = graphicsDevice.height - 50;
-    // // startx, starty, endx, endy
-    // var rectangle = [x1, y1, x2, y2];
-
-    // var drawObject = {
-    //     color: [1.0, 0.0, 0.0, 1.0],
-    //     destinationRectangle: rectangle
-    // };
-
     var cannonSprite = Draw2DSprite.create({
         width: 50,
         height: 100,
@@ -93,27 +97,8 @@ TurbulenzEngine.onload = function onloadFn()
         rotation: Math.PI / 4
     });
 
-    var currentLetterSprite = Draw2DSprite.create({
-        width: 42,
-        height: 42,
-        x: graphicsDevice.width - 64,
-        y: graphicsDevice.height - 64,
-        color: [1,1,1,1],
-        rotation: 0
-    });
-
-    var updateLetterSpriteCoords = function(){
-        var idx = letterIndex(currentLetter);
-        var col = idx % 6;
-        var row = Math.floor(idx/6);
-        var s = 42;
-        currentLetterSprite.setTextureRectangle([s*col,s*row,
-                                                 s*(col+1),s*(row+1)]);
-    };
-
     var updateCurrentLetter = function() {
-        currentLetter = letterBucket.generate();
-        updateLetterSpriteCoords();  
+        currentLetterObj.setLetter(letterBucket.generate());
     };
 
     var alphabetTexture = graphicsDevice.createTexture({
@@ -123,8 +108,8 @@ TurbulenzEngine.onload = function onloadFn()
         {
             if (texture)
             {
-                currentLetterSprite.setTexture(texture);
-                updateCurrentLetter();
+                letterTexture = texture;
+                currentLetterObj.sprite.setTexture(letterTexture);
             }
         }
     });
@@ -148,6 +133,10 @@ TurbulenzEngine.onload = function onloadFn()
     var PI2 = 2*Math.PI;
     var upVec = md.v2Build(0, 1.0);
     var mouseVec = md.v2Build(0, 1.0);
+    
+    var canvasElem = TurbulenzEngine.canvas;
+    var canvas = Canvas.create(graphicsDevice, md);
+    var ctx = canvas.getContext('2d');
 
     function update() {
         /* Update code goes here */
@@ -162,9 +151,14 @@ TurbulenzEngine.onload = function onloadFn()
             draw2D.begin(); // opaque
             draw2D.end();
 
+            if (ctx.beginFrame(graphicsDevice, 
+                               md.v4Build(0,0, canvas.width, canvas.height))){
+                currentLetterObj.draw(ctx, draw2D);
+                ctx.endFrame();
+            }
+
             draw2D.begin('additive'); // additive makes dark colors transparent...
             draw2D.drawSprite(cannonSprite);
-            draw2D.drawSprite(currentLetterSprite);
             draw2D.end();
 
             graphicsDevice.endFrame();
