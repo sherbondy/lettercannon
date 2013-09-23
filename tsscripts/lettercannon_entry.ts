@@ -100,8 +100,9 @@ TurbulenzEngine.onload = function onloadFn()
     var cannonMouseFn = cannonMouseHandler(cannon);
     function handleMouseOver(x, y) {
         cannonMouseFn(x, y);
-        var newLetterX = cannon.sprite.x - 0.4*(letterRadius+cannon.sprite.getHeight()/2)*Math.sin(cannon.rotation);
-        var newLetterY = cannon.sprite.y + 0.4*(letterRadius+cannon.sprite.getWidth())*Math.cos(cannon.rotation);
+        var offset = letterSize;
+        var newLetterX = cannon.sprite.x - offset*Math.sin(cannon.rotation);
+        var newLetterY = cannon.sprite.y + offset*Math.cos(cannon.rotation);
 
         currentLetterObj.sprite.x = newLetterX;
         currentLetterObj.sprite.y = newLetterY;
