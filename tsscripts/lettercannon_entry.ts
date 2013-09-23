@@ -52,8 +52,9 @@ TurbulenzEngine.onload = function onloadFn()
     var md = TurbulenzEngine.createMathDevice({});
     var phys2D = Physics2DDevice.create();
 
-    initializeLetters(graphicsDevice);
     var cannon = initializeCannon(graphicsDevice, md);
+    initializeLetters(graphicsDevice);
+    currentLetterObj.placeOnCannon(cannon);
 
     inputDevice.addEventListener('mouseover', handleMouseOver);
     inputDevice.addEventListener('mouseup', handleClick);
@@ -87,9 +88,10 @@ TurbulenzEngine.onload = function onloadFn()
 
             cannon.draw(draw2D);
 
+
             if (ctx.beginFrame(graphicsDevice, 
                                md.v4Build(0,0, canvas.width, canvas.height))){
-                currentLetterObj.draw(ctx, draw2D);
+                drawLetters(ctx, draw2D);
                 ctx.endFrame();
             }
 
@@ -100,16 +102,12 @@ TurbulenzEngine.onload = function onloadFn()
     var cannonMouseFn = cannonMouseHandler(cannon);
     function handleMouseOver(x, y) {
         cannonMouseFn(x, y);
-        var offset = letterSize;
-        var newLetterX = cannon.sprite.x - offset*Math.sin(cannon.rotation);
-        var newLetterY = cannon.sprite.y + offset*Math.cos(cannon.rotation);
-
-        currentLetterObj.sprite.x = newLetterX;
-        currentLetterObj.sprite.y = newLetterY;
+        currentLetterObj.placeOnCannon(cannon);
     }
     
     function handleClick(mouseCode, x, y) {
-        updateCurrentLetter();
+        updateCurrentLetter(graphicsDevice);
+        currentLetterObj.placeOnCannon(cannon);
     }
 
     // 60 fps

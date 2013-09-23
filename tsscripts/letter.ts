@@ -1,35 +1,61 @@
 var letterCounter: number = 0;
 var alphabetTexture;
 var currentLetterObj;
+var nextLetterObj;
+
 var letterBucket;
 var letterRadius = 21;
 var letterSize = letterRadius*2;
 
 function loadAlphabetTexture(graphicsDevice) {
-    alphabetTexture = graphicsDevice.createTexture({
+    graphicsDevice.createTexture({
         src: "assets/letters.png",
         mipmaps: true,
         onload: function (texture)
         {
             if (texture)
             {
+                alphabetTexture = texture;
                 currentLetterObj.sprite.setTexture(texture);
+                nextLetterObj.sprite.setTexture(texture);
             }
         }
     });
 }
 
+function drawLetters(ctx, draw2D){
+    var l1 = currentLetterObj;
+    var l2 = nextLetterObj;
+    ctx.save();
+    [l1, l2].forEach(function(letter){
+        drawCircle(ctx, letter.getColor(), letter.size/2, 
+                   letter.sprite.x, letter.sprite.y);
+    });
+    ctx.restore();
+
+    draw2D.begin('additive');
+    draw2D.drawSprite(l1.sprite);
+    draw2D.drawSprite(nextLetterObj.sprite);
+    draw2D.end();
+}
+
 function initializeLetters(graphicsDevice){
     letterBucket = new LetterGenerator();
-    currentLetterObj = new Letter(letterBucket.generate(), 
-                                  graphicsDevice.width - 64,
-                                  graphicsDevice.height - 64);
+    currentLetterObj = new Letter(letterBucket.generate());
+    updateNextLetter(graphicsDevice);
     loadAlphabetTexture(graphicsDevice);
 }
 
-function updateCurrentLetter() {
-    currentLetterObj.setLetter(letterBucket.generate());
-};
+function updateNextLetter(graphicsDevice) {
+    nextLetterObj = new Letter(letterBucket.generate(),
+                               graphicsDevice.width - 64,
+                               graphicsDevice.height - 64);
+}
+
+function updateCurrentLetter(graphicsDevice) {
+    currentLetterObj = nextLetterObj;
+    updateNextLetter(graphicsDevice);
+}
 
 
 class Letter {
@@ -41,7 +67,7 @@ class Letter {
     size: number = letterSize;
 
     // physics object...
-    constructor(letter: string, x: number, y: number) {
+    constructor(letter: string, x: number = 0, y: number = 0) {
         this.letter = letter.toLowerCase();
         this.id = ++letterCounter;
         this.points = 1;
@@ -69,8 +95,8 @@ class Letter {
         var col = idx % 6;
         var row = Math.floor(idx/6);
         var s = this.size;
-        this.sprite.setTextureRectangle([s*col,s*row,
-                                         s*(col+1),s*(row+1)]);
+        this.sprite.setTextureRectangle([s*col, s*row,
+                                         s*(col+1), s*(row+1)]);
     }
 
     setLetter(letter: string) {
@@ -82,15 +108,13 @@ class Letter {
         return point_colors[letter_points[this.letter]];
     }
 
-    draw(ctx, draw2D) {
-        ctx.save();
-        drawCircle(ctx, this.getColor(), this.size/2, 
-                   this.sprite.x, this.sprite.y);
-        ctx.restore();
+    placeOnCannon(cannon) {
+        var offset = letterSize;
+        var newLetterX = cannon.sprite.x - offset*Math.sin(cannon.rotation);
+        var newLetterY = cannon.sprite.y + offset*Math.cos(cannon.rotation);
 
-        draw2D.begin('additive');
-        draw2D.drawSprite(this.sprite);
-        draw2D.end();
+        this.sprite.x = newLetterX;
+        this.sprite.y = newLetterY;
     }
 }
 
