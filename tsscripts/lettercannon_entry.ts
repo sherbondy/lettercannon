@@ -74,7 +74,7 @@ TurbulenzEngine.onload = function onloadFn()
 
   // texture dimensions must be powers of 2
   var texture = graphicsDevice.createTexture({
-      src: "assets/textures/particle_spark.png",
+      src: "assets/cannon_white.png",
       mipmaps: true,
       onload: function (texture)
       {
