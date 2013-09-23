@@ -48,7 +48,7 @@ class Letter {
     }
 
     getColor(): string {
-        return "red";
+        return point_colors[letter_points[this.letter]];
     }
 
     draw(ctx, draw2D) {
@@ -123,4 +123,54 @@ var default_frequencies: LetterFrequencyMap = {
     "y": 0.023432532985879453,
     "x": 0.0031141338900967795, 
     "z": 0.0035890049684858282
+};
+
+interface LetterPointMap {
+    [letter: string]: number;
+}
+
+// based on: http://en.wikipedia.org/wiki/Scrabble_letter_distributions#English
+var letter_points: LetterPointMap = {
+    "e": 1,
+    "a": 1,
+    "i": 1,
+    "o": 1,
+    "n": 1,
+    "r": 1,
+    "t": 1,
+    "l": 1,
+    "s": 1,
+    "u": 1,
+
+    "d": 2,
+    "g": 2,
+
+    "b": 3,
+    "c": 3,
+    "m": 3,
+    "p": 3,
+
+    "f": 4,
+    "h": 4,
+    "v": 4,
+    "w": 4,
+    "y": 4,
+
+    "k": 5,
+
+    "j": 8,
+    "x": 8,
+
+    "q": 10,
+    "z": 10
+};
+
+var point_colors = {
+    1: "red",
+    2: "orange",
+    3: "silver",
+    4: "green",
+    5: "blue",
+    8: "indigo",
+    10: "purple",
 };
