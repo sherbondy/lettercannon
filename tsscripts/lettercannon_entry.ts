@@ -70,10 +70,7 @@ TurbulenzEngine.onload = function onloadFn()
     var md = TurbulenzEngine.createMathDevice({});
     var phys2D = Physics2DDevice.create();
 
-    var letterBucket = new LetterGenerator();
-    var currentLetterObj = new Letter(letterBucket.generate(), 
-                                      graphicsDevice.width - 64,
-                                      graphicsDevice.height - 64);
+    initializeLetters(graphicsDevice);
 
     inputDevice.addEventListener('mouseover', handleMouse);
     inputDevice.addEventListener('mouseup', handleClick);
@@ -97,24 +94,6 @@ TurbulenzEngine.onload = function onloadFn()
         rotation: Math.PI / 4
     });
 
-    var updateCurrentLetter = function() {
-        currentLetterObj.setLetter(letterBucket.generate());
-    };
-
-    var alphabetTexture = graphicsDevice.createTexture({
-        src: "assets/letters.png",
-        mipmaps: true,
-        onload: function (texture)
-        {
-            if (texture)
-            {
-                letterTexture = texture;
-                currentLetterObj.sprite.setTexture(letterTexture);
-            }
-        }
-    });
-
-
     // texture dimensions must be powers of 2
     var cannonTexture = graphicsDevice.createTexture({
         src: "assets/cannon_white.png",
@@ -124,7 +103,8 @@ TurbulenzEngine.onload = function onloadFn()
             if (texture)
             {
                 cannonSprite.setTexture(texture);
-                cannonSprite.setTextureRectangle([0, 0, texture.width, texture.height]);
+                cannonSprite.setTextureRectangle([0, 0, 
+                                                  texture.width, texture.height]);
             }
         }
     });

@@ -1,5 +1,34 @@
 var letterCounter: number = 0;
-var letterTexture;
+var alphabetTexture;
+var currentLetterObj;
+var letterBucket;
+
+function loadAlphabetTexture(graphicsDevice) {
+    alphabetTexture = graphicsDevice.createTexture({
+        src: "assets/letters.png",
+        mipmaps: true,
+        onload: function (texture)
+        {
+            if (texture)
+            {
+                currentLetterObj.sprite.setTexture(texture);
+            }
+        }
+    });
+}
+
+function initializeLetters(graphicsDevice){
+    letterBucket = new LetterGenerator();
+    currentLetterObj = new Letter(letterBucket.generate(), 
+                                  graphicsDevice.width - 64,
+                                  graphicsDevice.height - 64);
+    loadAlphabetTexture(graphicsDevice);
+}
+
+function updateCurrentLetter() {
+    currentLetterObj.setLetter(letterBucket.generate());
+};
+
 
 class Letter {
     sprite: Draw2DSprite;
@@ -24,7 +53,7 @@ class Letter {
             rotation: 0
         });
 
-        this.sprite.setTexture(letterTexture);
+        this.sprite.setTexture(alphabetTexture);
         this.setTextureCoords();
     }
 
