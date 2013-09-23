@@ -2,6 +2,8 @@ var letterCounter: number = 0;
 var alphabetTexture;
 var currentLetterObj;
 var letterBucket;
+var letterRadius = 21;
+var letterSize = letterRadius*2;
 
 function loadAlphabetTexture(graphicsDevice) {
     alphabetTexture = graphicsDevice.createTexture({
@@ -36,7 +38,7 @@ class Letter {
     id: number;
     letter: string;
     live: bool = false;
-    size: number = 42;
+    size: number = letterSize;
 
     // physics object...
     constructor(letter: string, x: number, y: number) {

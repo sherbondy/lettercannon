@@ -55,7 +55,7 @@ TurbulenzEngine.onload = function onloadFn()
     initializeLetters(graphicsDevice);
     var cannon = initializeCannon(graphicsDevice, md);
 
-    inputDevice.addEventListener('mouseover', cannonMouseHandler(cannon));
+    inputDevice.addEventListener('mouseover', handleMouseOver);
     inputDevice.addEventListener('mouseup', handleClick);
 
     var draw2D = Draw2D.create({
@@ -85,16 +85,26 @@ TurbulenzEngine.onload = function onloadFn()
             draw2D.begin(); // opaque
             draw2D.end();
 
+            cannon.draw(draw2D);
+
             if (ctx.beginFrame(graphicsDevice, 
                                md.v4Build(0,0, canvas.width, canvas.height))){
                 currentLetterObj.draw(ctx, draw2D);
                 ctx.endFrame();
             }
 
-            cannon.draw(draw2D);
-
             graphicsDevice.endFrame();
         }
+    }
+
+    var cannonMouseFn = cannonMouseHandler(cannon);
+    function handleMouseOver(x, y) {
+        cannonMouseFn(x, y);
+        var newLetterX = cannon.sprite.x - 0.4*(letterRadius+cannon.sprite.getHeight()/2)*Math.sin(cannon.rotation);
+        var newLetterY = cannon.sprite.y + 0.4*(letterRadius+cannon.sprite.getWidth())*Math.cos(cannon.rotation);
+
+        currentLetterObj.sprite.x = newLetterX;
+        currentLetterObj.sprite.y = newLetterY;
     }
     
     function handleClick(mouseCode, x, y) {
