@@ -42,6 +42,11 @@ var requestHandler = RequestHandler.create({
 var noop = function(args){
 };
 
+// only works for lowercase letters
+var letterIndex = function(letter){
+    return letter.charCodeAt(0) - 97;
+};
+
 /* Game code goes here */
 TurbulenzEngine.onload = function onloadFn()
 {
@@ -55,6 +60,7 @@ TurbulenzEngine.onload = function onloadFn()
     var currentLetter = letterBucket.generate();
 
     inputDevice.addEventListener('mouseover', handleMouse);
+    inputDevice.addEventListener('mouseup', handleClick);
 
     var draw2D = Draw2D.create({
         graphicsDevice: graphicsDevice
@@ -88,13 +94,27 @@ TurbulenzEngine.onload = function onloadFn()
     });
 
     var currentLetterSprite = Draw2DSprite.create({
-        width: 32,
-        height: 32,
-        x: graphicsDevice.width - 100,
-        y: graphicsDevice.height - 100,
+        width: 42,
+        height: 42,
+        x: graphicsDevice.width - 64,
+        y: graphicsDevice.height - 64,
         color: [1,1,1,1],
         rotation: 0
     });
+
+    var updateLetterSpriteCoords = function(){
+        var idx = letterIndex(currentLetter);
+        var col = idx % 6;
+        var row = Math.floor(idx/6);
+        var s = 42;
+        currentLetterSprite.setTextureRectangle([s*col,s*row,
+                                                 s*(col+1),s*(row+1)]);
+    };
+
+    var updateCurrentLetter = function() {
+        currentLetter = letterBucket.generate();
+        updateLetterSpriteCoords();  
+    };
 
     var alphabetTexture = graphicsDevice.createTexture({
         src: "assets/letters.png",
@@ -104,7 +124,7 @@ TurbulenzEngine.onload = function onloadFn()
             if (texture)
             {
                 currentLetterSprite.setTexture(texture);
-                currentLetterSprite.setTextureRectangle([0,0,42,42]);
+                updateCurrentLetter();
             }
         }
     });
@@ -158,6 +178,10 @@ TurbulenzEngine.onload = function onloadFn()
             rotateAngle = PI2 - rotateAngle;
         }
         console.log(rotateAngle);
+    }
+    
+    function handleClick(mouseCode, x, y) {
+        updateCurrentLetter();
     }
 
     // 60 fps
