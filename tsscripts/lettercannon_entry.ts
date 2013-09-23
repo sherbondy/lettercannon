@@ -101,8 +101,6 @@ TurbulenzEngine.onload = function onloadFn()
     bgColor[2] = b % 1; // Clamp color between 0-1
 
     sprite.rotation = rotateAngle;
-    scale[0] = scale[1] = Math.cos(sprite.rotation) + 2;
-    sprite.setScale(scale);
 
     if (graphicsDevice.beginFrame())
     {
