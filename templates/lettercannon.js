@@ -61,7 +61,7 @@ TurbulenzEngine.onload = function onloadFn() {
         destinationRectangle: rectangle
     };
     var sprite = Draw2DSprite.create({
-        width: 40,
+        width: 50,
         height: 100,
         x: graphicsDevice.width / 2,
         y: graphicsDevice.height / 2,
