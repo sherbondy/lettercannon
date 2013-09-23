@@ -13,16 +13,26 @@ tsc -c --out templates/lettercannon.js tsscripts/lettercannon_entry.ts
 makehtml --mode canvas-debug -t templates -t . -o lettercannon.debug.html lettercannon.js
 ```
 
+I made a Makefile to do the building automatically in the background. Combine it with [watch](https://github.com/visionmedia/watch) and you can do this:
+```
+watch make &
+```
+
+Awesome! And when you're done developing, just do `fg`.
+
+To test the game:
 - Run a static python server: `python -m SimpleHTTPServer`
 - Visit http://localhost:8000/lettercannon.debug.html
 
+
+##Development Plan
 
 Initial phase:
 - Carlo and I will develop the shooting part of the game
 - Elizabeth will develop the word clearing phase.
 
 
-We give elizabeth a graph object which indicates collisions.
+We give Elizabeth a graph object which indicates collisions.
 Every letter object has a unique id.
 This is a graph of neighbors, stating: letter#0 is touching letters #1, 3, and 10
 letters = {0: [1, 3, 10]}
