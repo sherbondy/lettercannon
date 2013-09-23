@@ -14,7 +14,7 @@ makehtml --mode canvas-debug -t templates -t . -o lettercannon.debug.html letter
 ```
 
 - Run a static python server: `python -m SimpleHTTPServer`
-- Visit http://localhost:8000/game.debug.html
+- Visit http://localhost:8000/lettercannon.debug.html
 
 
 Initial phase:
