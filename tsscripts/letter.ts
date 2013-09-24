@@ -26,14 +26,16 @@ function loadAlphabetTexture(graphicsDevice) {
     });
 }
 
-function drawLetters(ctx, draw2D){
+function drawLetters(ctx, draw2D, isClearing){
     var l1 = currentLetterObj;
     var l2 = nextLetterObj;
     ctx.save();
-    [l1, l2].forEach(function(letter){
-        drawCircle(ctx, letter.getColor(), letter.size/2, 
-                   letter.sprite.x, letter.sprite.y);
-    });
+    if (!isClearing){
+        [l1, l2].forEach(function(letter){
+            drawCircle(ctx, letter.getColor(), letter.size/2, 
+                       letter.sprite.x, letter.sprite.y);
+        });
+    }
 
     for (var id in letters){
         var letter = letters[id];
@@ -68,8 +70,8 @@ function initializeLetters(graphicsDevice){
 
 function updateNextLetter(graphicsDevice) {
     nextLetterObj = new Letter(letterBucket.generate(),
-                               graphicsDevice.width - 64,
-                               graphicsDevice.height - 64);
+                               graphicsDevice.width - 32,
+                               graphicsDevice.height - 32);
 }
 
 function updateCurrentLetter(graphicsDevice) {

@@ -43,6 +43,35 @@ var requestHandler = RequestHandler.create({
 
 function noop(args){}
 
+// NOTES:
+/*
+We can use http://docs.turbulenz.com/jslibrary_api/physics2d_collisionutils_api.html to check which shapes the user is clicking for clearing mode.
+*/
+
+var toggleButton = document.getElementById("toggle_mode");
+var isClearing = false;
+var bgColor = [0,0,0,1];
+
+function clearingModeText()
+{
+    return isClearing ? "Enter Shooting Mode" : "Enter Word Clearing Mode";
+}
+
+function toggleClearingMode()
+{
+    isClearing = !isClearing;
+    toggleButton.innerHTML = clearingModeText();
+    bgColor = isClearing ? [1,1,1,1] : [0,0,0,1];
+}
+
+function setupGUI()
+{
+    toggleButton.innerHTML = clearingModeText();
+    toggleButton.addEventListener("click", toggleClearingMode);
+}
+
+setupGUI();
+
 /* Game code goes here */
 TurbulenzEngine.onload = function onloadFn()
 {
@@ -64,7 +93,7 @@ TurbulenzEngine.onload = function onloadFn()
     inputDevice.addEventListener('mouseup', handleClick);
 
     var stageWidth = canvas.width; //meters
-    var stageHeight = canvas.height; //meters
+    var stageHeight = canvas.height - 64; //meters
 
     var draw2D = Draw2D.create({
         graphicsDevice: graphicsDevice,
@@ -115,8 +144,6 @@ TurbulenzEngine.onload = function onloadFn()
     });
 
     world.addRigidBody(border);
-
-    var bgColor = [0, 0, 0, 1];
     
     function update() {
         /* Update code goes here */
@@ -133,7 +160,8 @@ TurbulenzEngine.onload = function onloadFn()
 
             if (ctx.beginFrame(graphicsDevice, 
                                md.v4Build(0,0, canvas.width, canvas.height))){
-                drawLetters(ctx, draw2D);
+                
+                drawLetters(ctx, draw2D, isClearing);
                 ctx.endFrame();
             }
 
@@ -145,33 +173,37 @@ TurbulenzEngine.onload = function onloadFn()
 
     var cannonMouseFn = cannonMouseHandler(cannon);
     function handleMouseOver(mouseX, mouseY) {
-        cannonMouseFn(mouseX, mouseY);
-        currentLetterObj.placeOnCannon(cannon);
+        if (!isClearing){
+            cannonMouseFn(mouseX, mouseY);
+            currentLetterObj.placeOnCannon(cannon);
+        }
     }
     
     function handleClick(mouseCode, mouseX, mouseY) {
-        var liveLetter = currentLetterObj;
-        var letterPoint = draw2D.viewportMap(liveLetter.sprite.x, 
-                                             liveLetter.sprite.y);
-        var liveBody = phys2D.createRigidBody({
-            shapes: [letterShape.clone()],
-            position: letterPoint
-        });
+        if (!isClearing){
+            var liveLetter = currentLetterObj;
+            var letterPoint = draw2D.viewportMap(liveLetter.sprite.x, 
+                                                 liveLetter.sprite.y);
+            var liveBody = phys2D.createRigidBody({
+                shapes: [letterShape.clone()],
+                position: letterPoint
+            });
 
-        var veloVector = md.v2Build(mouseX - liveLetter.sprite.x,
-                                    mouseY - liveLetter.sprite.y);
-        var veloNorm = md.v2Normalize(veloVector);
-        var trueVelo = md.v2ScalarMul(veloNorm, 200.0);
-        var veloArray = MathDeviceConvert.v2ToArray(trueVelo);
+            var veloVector = md.v2Build(mouseX - liveLetter.sprite.x,
+                                        mouseY - liveLetter.sprite.y);
+            var veloNorm = md.v2Normalize(veloVector);
+            var trueVelo = md.v2ScalarMul(veloNorm, 200.0);
+            var veloArray = MathDeviceConvert.v2ToArray(trueVelo);
 
-        liveBody.setVelocity(veloArray);
-        liveLetter.rigidBody = liveBody;
-        liveLetter.live = true;
-        letters[liveLetter.id] = liveLetter;
-        world.addRigidBody(liveBody);
+            liveBody.setVelocity(veloArray);
+            liveLetter.rigidBody = liveBody;
+            liveLetter.live = true;
+            letters[liveLetter.id] = liveLetter;
+            world.addRigidBody(liveBody);
 
-        updateCurrentLetter(graphicsDevice);
-        currentLetterObj.placeOnCannon(cannon);
+            updateCurrentLetter(graphicsDevice);
+            currentLetterObj.placeOnCannon(cannon);
+        }
     }
 
     // 60 fps
