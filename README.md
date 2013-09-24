@@ -10,7 +10,7 @@
 ```
 tsc -c --out templates/lettercannon.js tsscripts/lettercannon_entry.ts
 
-makehtml --mode canvas-debug -t templates -t . -o lettercannon.debug.html lettercannon.js
+makehtml --mode canvas-debug -t templates -t . -o lettercannon.debug.html lettercannon.js lettercannon.html
 ```
 
 I made a Makefile to do the building automatically in the background. Combine it with [watch](https://github.com/visionmedia/watch) and you can do this:
