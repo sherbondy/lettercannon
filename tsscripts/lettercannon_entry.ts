@@ -132,7 +132,7 @@ TurbulenzEngine.onload = function onloadFn()
     world.addRigidBody(border);
 
     // the end point of the laser line.
-    var laserLineEnd = [0,0];
+    var laserLineEnd = [canvas.width/2,canvas.height];
 
     function updateLaserPointer() {
         var rayDir = cannon.getDirectionVector();

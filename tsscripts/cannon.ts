@@ -52,9 +52,8 @@ class Cannon {
             width: 50,
             height: 100,
             x: graphicsDevice.width / 2,
-            y: graphicsDevice.height / 2,
+            y: graphicsDevice.height / 2 - 25,
             color: [1.0, 1.0, 1.0, 1.0],
-            rotation: Math.PI / 4
         });
     }
 
