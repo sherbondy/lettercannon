@@ -1,4 +1,5 @@
 class Laser {
+    // the endpoint of the laser line (origin is the cannon center)
     lineEndpoint: number[];
 
     update(cannon, canvas, world) {

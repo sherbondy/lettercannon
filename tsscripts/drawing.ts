@@ -6,6 +6,15 @@ function drawCircle(context, color, radius, centerX, centerY) {
     context.fill();
 }
 
+function drawBottomBar(ctx, canvas){
+    ctx.save();
+    ctx.beginPath();
+    ctx.rect(0,canvas.height-64,canvas.width,canvas.height);
+    ctx.fillStyle = 'white';
+    ctx.fill();
+    ctx.restore();
+}
+
 function spriteRectangle(sprite: Draw2DSprite): number[] {
     var origin = [];
     sprite.getOrigin(origin);

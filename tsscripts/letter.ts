@@ -140,6 +140,32 @@ class Letter {
         this.sprite.x = newLetterX;
         this.sprite.y = newLetterY;
     }
+
+    getShape(phys2D) {
+       return phys2D.createCircleShape({
+           radius: letterRadius
+       });
+    }
+
+    shoot(cannon, world, draw2D, phys2D) {
+        var letterPoint = draw2D.viewportMap(this.sprite.x, 
+                                             this.sprite.y);
+        var liveBody = phys2D.createRigidBody({
+            shapes: [this.getShape(phys2D)],
+            position: letterPoint
+        });
+
+        var veloVector = cannon.getDirectionVector();
+        // scale velocity vector by desired speed;
+        var trueVelo = md.v2ScalarMul(veloVector, letterSpeed);
+        var veloArray = MathDeviceConvert.v2ToArray(trueVelo);
+
+        liveBody.setVelocity(veloArray);
+        this.rigidBody = liveBody;
+        this.live = true;
+        letters[this.id] = this;
+        world.addRigidBody(liveBody);
+    }
 }
 
 interface LetterFrequencyMap {

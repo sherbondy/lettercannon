@@ -31,18 +31,6 @@ function initializeCannon(graphicsDevice, mathDevice){
     return cannon;
 }
 
-function cannonMouseHandler(cannon){
-    return function(x, y){
-        var mouseVec = md.v2Normalize(md.v2Build(x-cannon.sprite.x, 
-                                                 y-cannon.sprite.y));
-        var rotateAngle = Math.acos(md.v2Dot(upVec, mouseVec));
-        if (mouseVec[0] > 0){
-            rotateAngle = PI2 - rotateAngle;
-        }
-        cannon.setRotation(rotateAngle);
-    }
-}
-
 class Cannon {
     rotation: number;
     sprite: Draw2DSprite;
@@ -78,5 +66,18 @@ class Cannon {
         draw2D.begin('additive');
         draw2D.drawSprite(this.sprite);
         draw2D.end();
+    }
+
+    mouseHandler(){
+        var cannon = this;
+        return function(x, y){
+            var mouseVec = md.v2Normalize(md.v2Build(x-cannon.sprite.x, 
+                                                     y-cannon.sprite.y));
+            var rotateAngle = Math.acos(md.v2Dot(upVec, mouseVec));
+            if (mouseVec[0] > 0){
+                rotateAngle = PI2 - rotateAngle;
+            }
+            cannon.setRotation(rotateAngle);
+        }
     }
 }

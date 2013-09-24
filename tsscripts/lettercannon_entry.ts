@@ -73,11 +73,6 @@ TurbulenzEngine.onload = function onloadFn()
         elasticity: 0,
     });
 
-    var letterShape = phys2D.createCircleShape({
-        radius: letterRadius, 
-        material: mainMaterial
-    });
-
     var world = phys2D.createWorld({
         gravity : [0, 0],
         velocityIterations : 8,
@@ -112,14 +107,6 @@ TurbulenzEngine.onload = function onloadFn()
     // the end point of the laser line.
     var laserPointer = new Laser([canvas.width/2,canvas.height]);
 
-    function drawBottomBar(ctx){
-        ctx.save();
-        ctx.beginPath();
-        ctx.rect(0,canvas.height-64,canvas.width,canvas.height);
-        ctx.fillStyle = 'white';
-        ctx.fill();
-        ctx.restore();
-    }
     
     function update() {
         /* Update code goes here */
@@ -162,7 +149,7 @@ TurbulenzEngine.onload = function onloadFn()
 
             if (ctx.beginFrame(graphicsDevice, canvasBox)){
                 // draw the lower bar
-                drawBottomBar(ctx);
+                drawBottomBar(ctx, canvas);
 
                 // draw the letters
                 drawLetters(ctx, draw2D, isClearing);
@@ -173,37 +160,17 @@ TurbulenzEngine.onload = function onloadFn()
         }
     }
 
-    var cannonMouseFn = cannonMouseHandler(cannon);
+    var cannonMouseFn = cannon.mouseHandler();
     function handleMouseOver(mouseX, mouseY) {
         if (!isClearing){
             cannonMouseFn(mouseX, mouseY);
             currentLetterObj.placeOnCannon(cannon);
         }
     }
-
-    function shootLiveLetter(liveLetter){
-        var letterPoint = draw2D.viewportMap(liveLetter.sprite.x, 
-                                             liveLetter.sprite.y);
-        var liveBody = phys2D.createRigidBody({
-            shapes: [letterShape.clone()],
-            position: letterPoint
-        });
-
-        var veloVector = cannon.getDirectionVector();
-        // scale velocity vector by desired speed;
-        var trueVelo = md.v2ScalarMul(veloVector, letterSpeed);
-        var veloArray = MathDeviceConvert.v2ToArray(trueVelo);
-
-        liveBody.setVelocity(veloArray);
-        liveLetter.rigidBody = liveBody;
-        liveLetter.live = true;
-        letters[liveLetter.id] = liveLetter;
-        world.addRigidBody(liveBody);
-    }
-    
+   
     function handleClick(mouseCode, mouseX, mouseY) {
         if (!isClearing){
-            shootLiveLetter(currentLetterObj);
+            currentLetterObj.shoot(cannon, world, draw2D, phys2D);
             updateCurrentLetter(graphicsDevice);
             currentLetterObj.placeOnCannon(cannon);
         }
