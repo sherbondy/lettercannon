@@ -25,6 +25,7 @@
 /// <reference path="drawing.ts" />
 /// <reference path="letter.ts" />
 /// <reference path="cannon.ts" />
+/// <reference path="gui.ts" />
 /// <reference path="main.ts" />
 /// <reference path="util.ts" />
 
@@ -35,29 +36,6 @@ We can use http://docs.turbulenz.com/jslibrary_api/physics2d_world_api.html#shap
 */
 
 // indicate whether we're in clearing mode or not
-var isClearing = false;
-var toggleButton = document.getElementById("toggle_mode");
-var bgColor = [0,0,0,1];
-
-function clearingModeText()
-{
-    return isClearing ? "Enter Shooting Mode" : "Enter Word Clearing Mode";
-}
-
-function toggleClearingMode()
-{
-    isClearing = !isClearing;
-    toggleButton.innerHTML = clearingModeText();
-    bgColor = isClearing ? [1,1,1,1] : [0,0,0,1];
-}
-
-function setupGUI()
-{
-    toggleButton.innerHTML = clearingModeText();
-    toggleButton.addEventListener("click", toggleClearingMode);
-}
-
-setupGUI();
 
 /* Game code goes here */
 TurbulenzEngine.onload = function onloadFn()
@@ -71,6 +49,8 @@ TurbulenzEngine.onload = function onloadFn()
     var canvasElem = TurbulenzEngine.canvas;
     var canvas = Canvas.create(graphicsDevice, md);
     var ctx = canvas.getContext('2d');
+
+    gui.setupGUI();
 
     var cannon = initializeCannon(graphicsDevice, md);
     initializeLetters(graphicsDevice);
@@ -90,9 +70,6 @@ TurbulenzEngine.onload = function onloadFn()
 
     var mainMaterial = phys2D.createMaterial({
         elasticity: 0,
-        staticFriction: 10,
-        dynamicFriction: 10,
-        rollingFriction: 10
     });
 
     var letterShape = phys2D.createCircleShape({
@@ -175,6 +152,7 @@ TurbulenzEngine.onload = function onloadFn()
 
         if (graphicsDevice.beginFrame())
         {
+            // make the letters stop the moment they collide with anything
             var arbiters = world.staticArbiters;
             for (var i = 0, nArbs = arbiters.length; i < nArbs; i++){
                 var arb = arbiters[i];
@@ -189,7 +167,7 @@ TurbulenzEngine.onload = function onloadFn()
             world.step(1.0/60);
 
             // clear the canvas
-            graphicsDevice.clear(bgColor, 1.0);
+            graphicsDevice.clear(gui.bgColor, 1.0);
             /* Rendering code goes here */
 
             draw2D.begin();

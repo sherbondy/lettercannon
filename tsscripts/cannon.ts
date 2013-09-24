@@ -46,13 +46,18 @@ function cannonMouseHandler(cannon){
 class Cannon {
     rotation: number;
     sprite: Draw2DSprite;
+    width: number = 50;
+    height: number = 100;
 
     constructor(graphicsDevice){
+        // offset origin y slightly for laser pointer
+        var yOffset = 5;
         this.sprite = Draw2DSprite.create({
-            width: 50,
-            height: 100,
+            width: this.width,
+            height: this.height,
+            origin: [this.width/2, this.height/2 + yOffset],
             x: graphicsDevice.width / 2,
-            y: graphicsDevice.height / 2 - 25,
+            y: graphicsDevice.height / 2 - (this.height/4 + yOffset),
             color: [1.0, 1.0, 1.0, 1.0],
         });
     }
