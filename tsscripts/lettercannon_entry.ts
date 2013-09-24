@@ -26,30 +26,17 @@
 /// <reference path="letter.ts" />
 /// <reference path="cannon.ts" />
 /// <reference path="main.ts" />
+/// <reference path="util.ts" />
 
-var requestHandler = RequestHandler.create({
-    initialRetryTime: 500,
-    notifyTime: 4000,
-    maxRetryTime: 8000,
-    onReconnected: function onReconnectedFn(reason, requestCallContext)
-    {
-        console.log('Reconnected');
-    },
-    onRequestTimeout: function onRequestTimeoutFn(reason, requestCallContext)
-    {
-        console.log('Connection lost');
-    }
-});
-
-function noop(args){}
 
 // NOTES:
 /*
 We can use http://docs.turbulenz.com/jslibrary_api/physics2d_world_api.html#shapepointquery or bodyPointQuery to check which shapes the user is clicking for clearing mode.
 */
 
-var toggleButton = document.getElementById("toggle_mode");
+// indicate whether we're in clearing mode or not
 var isClearing = false;
+var toggleButton = document.getElementById("toggle_mode");
 var bgColor = [0,0,0,1];
 
 function clearingModeText()
@@ -119,8 +106,7 @@ TurbulenzEngine.onload = function onloadFn()
         positionIterations : 8
     });
 
-    var thickness = 1;// 1 cm
-         
+    var thickness = 1
     var border = phys2D.createRigidBody({
         type: 'static',
         shapes: [
@@ -145,11 +131,47 @@ TurbulenzEngine.onload = function onloadFn()
 
     world.addRigidBody(border);
 
-    var realTime = 0;
-    var prevTime = TurbulenzEngine.time;
+    // the end point of the laser line.
+    var laserLineEnd = [0,0];
+
+    function updateLaserPointer() {
+        var rayDir = cannon.getDirectionVector();
+        var factor = (Math.max(canvas.width, canvas.height) / 
+                      md.v2Length(rayDir));
+        var ray = {
+            origin: [cannon.sprite.x, cannon.sprite.y],
+            direction: rayDir,
+            maxFactor: factor
+        };
+        var result = world.rayCast(ray, false, truth, {});
+        if (result){
+            laserLineEnd = result.hitPoint;
+        }
+    }
+
+    function drawLaserPointer(ctx){
+        ctx.save();
+        ctx.beginPath();
+        ctx.moveTo(cannon.sprite.x, cannon.sprite.y);
+        ctx.lineTo(laserLineEnd[0], laserLineEnd[1]);
+        ctx.strokeStyle = 'red';
+        ctx.stroke();
+        ctx.restore();
+    }
+
+    function drawBottomBar(ctx){
+        ctx.save();
+        ctx.beginPath();
+        ctx.rect(0,canvas.height-64,canvas.width,canvas.height);
+        ctx.fillStyle = 'white';
+        ctx.fill();
+        ctx.restore();
+    }
     
     function update() {
         /* Update code goes here */
+
+        var canvasBox = md.v4Build(0,0, canvas.width, canvas.height);
 
         if (graphicsDevice.beginFrame())
         {
@@ -163,25 +185,30 @@ TurbulenzEngine.onload = function onloadFn()
                 arb.bodyB.setAsStatic();
             }
 
+            updateLaserPointer();
             world.step(1.0/60);
 
+            // clear the canvas
             graphicsDevice.clear(bgColor, 1.0);
             /* Rendering code goes here */
 
-            draw2D.begin(); // opaque
+            draw2D.begin();
+            // opaque drawing can go in here
             draw2D.end();
 
+            if (ctx.beginFrame(graphicsDevice, canvasBox)){
+                // draw the laser line
+                drawLaserPointer(ctx);
+                ctx.endFrame();
+            }
+            // draw cannon on top of laser line
             cannon.draw(draw2D);
 
-            if (ctx.beginFrame(graphicsDevice, 
-                               md.v4Build(0,0, canvas.width, canvas.height))){
-                ctx.save();
-                ctx.beginPath();
-                ctx.rect(0,canvas.height-64,canvas.width,canvas.height);
-                ctx.fillStyle = 'white';
-                ctx.fill();
-                ctx.restore();
+            if (ctx.beginFrame(graphicsDevice, canvasBox)){
+                // draw the lower bar
+                drawBottomBar(ctx);
 
+                // draw the letters
                 drawLetters(ctx, draw2D, isClearing);
                 ctx.endFrame();
             }
@@ -197,29 +224,30 @@ TurbulenzEngine.onload = function onloadFn()
             currentLetterObj.placeOnCannon(cannon);
         }
     }
+
+    function shootLiveLetter(liveLetter){
+        var letterPoint = draw2D.viewportMap(liveLetter.sprite.x, 
+                                             liveLetter.sprite.y);
+        var liveBody = phys2D.createRigidBody({
+            shapes: [letterShape.clone()],
+            position: letterPoint
+        });
+
+        var veloVector = cannon.getDirectionVector();
+        // scale velocity vector by desired speed;
+        var trueVelo = md.v2ScalarMul(veloVector, letterSpeed);
+        var veloArray = MathDeviceConvert.v2ToArray(trueVelo);
+
+        liveBody.setVelocity(veloArray);
+        liveLetter.rigidBody = liveBody;
+        liveLetter.live = true;
+        letters[liveLetter.id] = liveLetter;
+        world.addRigidBody(liveBody);
+    }
     
     function handleClick(mouseCode, mouseX, mouseY) {
         if (!isClearing){
-            var liveLetter = currentLetterObj;
-            var letterPoint = draw2D.viewportMap(liveLetter.sprite.x, 
-                                                 liveLetter.sprite.y);
-            var liveBody = phys2D.createRigidBody({
-                shapes: [letterShape.clone()],
-                position: letterPoint
-            });
-
-            var veloVector = md.v2Build(-1*Math.sin(cannon.rotation),
-                                        Math.cos(cannon.rotation));
-            var veloNorm = md.v2Normalize(veloVector);
-            var trueVelo = md.v2ScalarMul(veloNorm, 300.0);
-            var veloArray = MathDeviceConvert.v2ToArray(trueVelo);
-
-            liveBody.setVelocity(veloArray);
-            liveLetter.rigidBody = liveBody;
-            liveLetter.live = true;
-            letters[liveLetter.id] = liveLetter;
-            world.addRigidBody(liveBody);
-
+            shootLiveLetter(currentLetterObj);
             updateCurrentLetter(graphicsDevice);
             currentLetterObj.placeOnCannon(cannon);
         }

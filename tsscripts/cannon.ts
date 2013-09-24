@@ -63,6 +63,12 @@ class Cannon {
         this.sprite.rotation = rotation;
     }
 
+    getDirectionVector(): number[] {
+        var dirVec =  md.v2Build(-1*Math.sin(this.rotation),
+                                 Math.cos(this.rotation));
+        return md.v2Normalize(dirVec);
+    }
+
     draw(draw2D){
         // additive makes dark colors transparent...
         draw2D.begin('additive');

@@ -9,6 +9,7 @@ var letters = {};
 var letterBucket;
 var letterRadius = 21;
 var letterSize = letterRadius*2;
+var letterSpeed = 300;
 
 function loadAlphabetTexture(graphicsDevice) {
     graphicsDevice.createTexture({
