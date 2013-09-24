@@ -3,6 +3,9 @@ var alphabetTexture;
 var currentLetterObj;
 var nextLetterObj;
 
+// interface letterIDMap { [id: number]: Letter; }
+var letters = {};
+
 var letterBucket;
 var letterRadius = 21;
 var letterSize = letterRadius*2;
@@ -31,11 +34,28 @@ function drawLetters(ctx, draw2D){
         drawCircle(ctx, letter.getColor(), letter.size/2, 
                    letter.sprite.x, letter.sprite.y);
     });
+
+    for (var id in letters){
+        var letter = letters[id];
+        if (letter.rigidBody){
+            var pos = [];
+            letter.rigidBody.getPosition(pos);
+            letter.sprite.x = pos[0];
+            letter.sprite.y = pos[1];
+        }
+        drawCircle(ctx, letter.getColor(), letter.size/2, 
+                   letter.sprite.x, letter.sprite.y);
+    }
+
     ctx.restore();
 
     draw2D.begin('additive');
     draw2D.drawSprite(l1.sprite);
     draw2D.drawSprite(nextLetterObj.sprite);
+    for (var id in letters){
+        var letter = letters[id];
+        draw2D.drawSprite(letter.sprite);
+    }
     draw2D.end();
 }
 
@@ -65,6 +85,7 @@ class Letter {
     letter: string;
     live: bool = false;
     size: number = letterSize;
+    rigidBody: any = null;
 
     // physics object...
     constructor(letter: string, x: number = 0, y: number = 0) {
