@@ -160,7 +160,13 @@ TurbulenzEngine.onload = function onloadFn()
 
             if (ctx.beginFrame(graphicsDevice, 
                                md.v4Build(0,0, canvas.width, canvas.height))){
-                
+                ctx.save();
+                ctx.beginPath();
+                ctx.rect(0,canvas.height-64,canvas.width,canvas.height);
+                ctx.fillStyle = 'white';
+                ctx.fill();
+                ctx.restore();
+
                 drawLetters(ctx, draw2D, isClearing);
                 ctx.endFrame();
             }
@@ -189,8 +195,8 @@ TurbulenzEngine.onload = function onloadFn()
                 position: letterPoint
             });
 
-            var veloVector = md.v2Build(mouseX - liveLetter.sprite.x,
-                                        mouseY - liveLetter.sprite.y);
+            var veloVector = md.v2Build(-1*Math.sin(cannon.rotation),
+                                        Math.cos(cannon.rotation));
             var veloNorm = md.v2Normalize(veloVector);
             var trueVelo = md.v2ScalarMul(veloNorm, 200.0);
             var veloArray = MathDeviceConvert.v2ToArray(trueVelo);
