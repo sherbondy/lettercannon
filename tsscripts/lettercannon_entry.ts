@@ -45,7 +45,7 @@ function noop(args){}
 
 // NOTES:
 /*
-We can use http://docs.turbulenz.com/jslibrary_api/physics2d_collisionutils_api.html to check which shapes the user is clicking for clearing mode.
+We can use http://docs.turbulenz.com/jslibrary_api/physics2d_world_api.html#shapepointquery or bodyPointQuery to check which shapes the user is clicking for clearing mode.
 */
 
 var toggleButton = document.getElementById("toggle_mode");
@@ -144,12 +144,27 @@ TurbulenzEngine.onload = function onloadFn()
     });
 
     world.addRigidBody(border);
+
+    var realTime = 0;
+    var prevTime = TurbulenzEngine.time;
     
     function update() {
         /* Update code goes here */
 
         if (graphicsDevice.beginFrame())
         {
+            var arbiters = world.staticArbiters;
+            for (var i = 0, nArbs = arbiters.length; i < nArbs; i++){
+                var arb = arbiters[i];
+                if (!arb.active){
+                    continue;
+                }
+                arb.bodyA.setAsStatic();
+                arb.bodyB.setAsStatic();
+            }
+
+            world.step(1.0/60);
+
             graphicsDevice.clear(bgColor, 1.0);
             /* Rendering code goes here */
 
@@ -173,8 +188,6 @@ TurbulenzEngine.onload = function onloadFn()
 
             graphicsDevice.endFrame();
         }
-
-        world.step(1.0/60);
     }
 
     var cannonMouseFn = cannonMouseHandler(cannon);
@@ -198,7 +211,7 @@ TurbulenzEngine.onload = function onloadFn()
             var veloVector = md.v2Build(-1*Math.sin(cannon.rotation),
                                         Math.cos(cannon.rotation));
             var veloNorm = md.v2Normalize(veloVector);
-            var trueVelo = md.v2ScalarMul(veloNorm, 200.0);
+            var trueVelo = md.v2ScalarMul(veloNorm, 300.0);
             var veloArray = MathDeviceConvert.v2ToArray(trueVelo);
 
             liveBody.setVelocity(veloArray);
