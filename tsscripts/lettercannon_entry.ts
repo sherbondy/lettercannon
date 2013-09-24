@@ -25,6 +25,7 @@
 /// <reference path="drawing.ts" />
 /// <reference path="letter.ts" />
 /// <reference path="cannon.ts" />
+/// <reference path="laser.ts" />
 /// <reference path="gui.ts" />
 /// <reference path="main.ts" />
 /// <reference path="util.ts" />
@@ -109,32 +110,7 @@ TurbulenzEngine.onload = function onloadFn()
     world.addRigidBody(border);
 
     // the end point of the laser line.
-    var laserLineEnd = [canvas.width/2,canvas.height];
-
-    function updateLaserPointer() {
-        var rayDir = cannon.getDirectionVector();
-        var factor = (Math.max(canvas.width, canvas.height) / 
-                      md.v2Length(rayDir));
-        var ray = {
-            origin: [cannon.sprite.x, cannon.sprite.y],
-            direction: rayDir,
-            maxFactor: factor
-        };
-        var result = world.rayCast(ray, false, truth, {});
-        if (result){
-            laserLineEnd = result.hitPoint;
-        }
-    }
-
-    function drawLaserPointer(ctx){
-        ctx.save();
-        ctx.beginPath();
-        ctx.moveTo(cannon.sprite.x, cannon.sprite.y);
-        ctx.lineTo(laserLineEnd[0], laserLineEnd[1]);
-        ctx.strokeStyle = 'red';
-        ctx.stroke();
-        ctx.restore();
-    }
+    var laserPointer = new Laser([canvas.width/2,canvas.height]);
 
     function drawBottomBar(ctx){
         ctx.save();
@@ -163,7 +139,7 @@ TurbulenzEngine.onload = function onloadFn()
                 arb.bodyB.setAsStatic();
             }
 
-            updateLaserPointer();
+            laserPointer.update(cannon, canvas, world);
             world.step(1.0/60);
 
             // clear the canvas
@@ -177,7 +153,7 @@ TurbulenzEngine.onload = function onloadFn()
             if (!isClearing) {
                 if (ctx.beginFrame(graphicsDevice, canvasBox)){
                     // draw the laser line
-                    drawLaserPointer(ctx);
+                    laserPointer.draw(ctx, cannon);
                     ctx.endFrame();
                 }
                 // draw cannon on top of laser line
