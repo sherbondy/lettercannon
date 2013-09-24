@@ -196,13 +196,15 @@ TurbulenzEngine.onload = function onloadFn()
             // opaque drawing can go in here
             draw2D.end();
 
-            if (ctx.beginFrame(graphicsDevice, canvasBox)){
-                // draw the laser line
-                drawLaserPointer(ctx);
-                ctx.endFrame();
+            if (!isClearing) {
+                if (ctx.beginFrame(graphicsDevice, canvasBox)){
+                    // draw the laser line
+                    drawLaserPointer(ctx);
+                    ctx.endFrame();
+                }
+                // draw cannon on top of laser line
+                cannon.draw(draw2D);
             }
-            // draw cannon on top of laser line
-            cannon.draw(draw2D);
 
             if (ctx.beginFrame(graphicsDevice, canvasBox)){
                 // draw the lower bar
