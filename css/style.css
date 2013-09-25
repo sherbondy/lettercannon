@@ -2,5 +2,8 @@
     width: 500px;
     height: 564px;
     margin: 0 auto;
-    
+}
+
+#found_words_list {
+    float: left;
 }

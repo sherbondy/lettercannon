@@ -272,6 +272,8 @@ TurbulenzEngine.onload = function onloadFn()
     function handleClick(mouseCode, mouseX, mouseY) {
         mouse_down = false;
         if (!isClearing && !isOver){
+            incorrect_letters  = [];
+            correct_letters   = [];
             currentLetterObj.shoot(cannon, world, draw2D, phys2D);
             updateCurrentLetter(graphicsDevice);
             currentLetterObj.placeOnCannon(cannon);

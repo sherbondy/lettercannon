@@ -23,30 +23,32 @@ foundWords = [];
 // spelled has fewer than 3 letters. 
 // Returns the word spelled otherwise.
 function checkWord(neighbors, selected){
-   var word:string;
+   var word:string = letters[selected[0]].letter;
    if (selected.length < 3){
       return "";
    }
 
-   if (foundWords.indexOf(selected) == -1){
+   if (foundWords.indexOf(selected) != -1){
       // Player's already selected that word in that place, don't give them
       // more points!!
       return "";
    }
-   for (var i:number = 0; i < selected.length; i++){
+
+   for (var i:number = 1; i < selected.length; i++){
 	// letters array maps numbers to letters
 	// only add to the word if the letters are actually adjacent...
-	if (i != 0 && neighbors[selected[i-1]].indexOf(selected[i]) != -1){
-	    word += letters[i];
+	if ((i != 0) && (neighbors[selected[i-1]].indexOf(selected[i]) != -1)){
+	    word += letters[selected[i]].letter;
 	} else {
 	    return "";
 	}
    }
+
    // We have the word, now see if it's in the dictionary (assets/words)
-   if (dictionary.indexOf[word] != -1){
+   if (dictionary.indexOf(word) != -1){
        // add the sequence of letters (not the word itself) to an array
        foundWords.push(selected);
-       return word;
+       return word.charAt(0).toUpperCase() + word.slice(1);
    } else {
        return "";
    }
