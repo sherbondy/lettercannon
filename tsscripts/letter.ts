@@ -6,6 +6,7 @@ var nextLetterObj;
 // interface letterIDMap { [id: number]: Letter; }
 var letters = {};
 var neighbors = {};
+var words = [];
 var letterBucket;
 var letterRadius = 21;
 var letterSize = letterRadius*2;

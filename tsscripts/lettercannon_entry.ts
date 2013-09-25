@@ -109,8 +109,27 @@ TurbulenzEngine.onload = function onloadFn()
                 }
             });
 
-            incorrect_letters  = [];
-            correct_letters   = [];
+            /* current naive scoring algorithm:
+               give player points for every letter in every word
+               (even overlapping ones).
+               Then give multiplier bonus based on *quantity*
+               of words made that round.
+            */
+            var roundScore = 0;
+            words.forEach(function(word){
+                for(var i = 0; i < word.length; i++){
+                    var letter = word.charAt(i).toLowerCase();
+                    roundScore += letter_points[letter];
+                }
+            });
+            debugger;
+            roundScore *= words.length;
+            score += roundScore;
+            gui.updateScore(score);
+            
+            correct_letters  = [];
+            incorrect_letters = [];
+            words = [];
         } else {
             // handle clearing mode setup logic here
         }
@@ -303,6 +322,7 @@ TurbulenzEngine.onload = function onloadFn()
 
             if (word != "") {
                 gui.addWord(word);
+                words.push(word);
                 correct_letters = correct_letters.concat(selected);
             } else {
                 incorrect_letters = [].concat(selected);
@@ -323,6 +343,7 @@ TurbulenzEngine.onload = function onloadFn()
         intervalID = TurbulenzEngine.setInterval(update, 1000 / 60);
         isOver = false;
         startTime = TurbulenzEngine.time;
+        score = 0;
 
         for (var id in letters){
             world.removeRigidBody(letters[id].rigidBody);
