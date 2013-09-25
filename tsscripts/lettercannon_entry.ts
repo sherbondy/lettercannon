@@ -160,10 +160,71 @@ TurbulenzEngine.onload = function onloadFn()
                 if (ctx.beginFrame(graphicsDevice, canvasBox)){
                     // draw the laser line
                     laserPointer.draw(ctx, cannon);
+
+                    // This WAS a double circle to indicate
+                    // where the player will lose, but it
+                    // isn't necessary. Leaving here just in
+                    // case we want it for aesthetic reasons?
+                    // ctx.save()
+                    // ctx.beginPath();
+                    // ctx.strokeStyle = 'gray';
+                    // ctx.arc(center_width, center_height,
+                    //         67, 0, PI2, false);
+                    // ctx.stroke();
+                    // ctx.beginPath();
+                    // ctx.strokeStyle = 'gray';
+                    // ctx.arc(center_width, center_height,
+                    //         70, 0, PI2, false);
+                    // ctx.stroke();
+                    // ctx.restore();
+
                     ctx.endFrame();
                 }
                 // draw cannon on top of laser line
                 cannon.draw(draw2D);
+            } else {
+                for (var coords in correct_letters) {
+                    if (ctx.beginFrame(graphicsDevice, canvasBox)){
+                        ctx.save()
+                        ctx.beginPath();
+                        ctx.strokeStyle = 'limegreen';
+                        ctx.lineWidth   = 4;
+                        ctx.arc(correct_letters[coords][0],
+                                correct_letters[coords][1],
+                                22, 0, PI2, false);
+                        ctx.stroke();
+                        ctx.restore();
+                        ctx.endFrame();
+                    }
+                }
+                for (var coords in incorrect_letters) {
+                    if (ctx.beginFrame(graphicsDevice, canvasBox)){
+                        ctx.save()
+                        ctx.beginPath();
+                        ctx.strokeStyle = 'crimson';
+                        ctx.lineWidth   = 4;
+                        ctx.arc(incorrect_letters[coords][0],
+                                incorrect_letters[coords][1],
+                                22, 0, PI2, false);
+                        ctx.stroke();
+                        ctx.restore();
+                        ctx.endFrame();
+                    }
+                }
+                for (var coords in selected_letters) {
+                    if (ctx.beginFrame(graphicsDevice, canvasBox)){
+                        ctx.save()
+                        ctx.beginPath();
+                        ctx.strokeStyle = 'skyblue';
+                        ctx.lineWidth   = 4;
+                        ctx.arc(selected_letters[coords][0],
+                                selected_letters[coords][1],
+                                22, 0, PI2, false);
+                        ctx.stroke();
+                        ctx.restore();
+                        ctx.endFrame();
+                    }
+                }
             }
 
             if (ctx.beginFrame(graphicsDevice, canvasBox)){
@@ -183,20 +244,27 @@ TurbulenzEngine.onload = function onloadFn()
     var mouse_down    = false;
     var used_letters  = {};
     var selected:number[] = [];
+    var selected_letters  = [];
+    var correct_letters   = [];
+    var incorrect_letters = [];
     function handleMouseOver(mouseX, mouseY) {
         if (!isClearing && !isOver){
             cannonMouseFn(mouseX, mouseY);
             currentLetterObj.placeOnCannon(cannon);
         } else if (isClearing && mouse_down){
-            //currentLetterObj.shoot(cannon, world, draw2D, phys2D);
-            //updateCurrentLetter(graphicsDevice);
-            //currentLetterObj.placeOnCannon(cannon);
             var point = draw2D.viewportMap(mouseX, mouseY);
-            var store = [];
-            world.shapePointQuery(point, store);
-            if ((store[0] != undefined) && !(store[0].id in used_letters)) {
-              used_letters[store[0].id] = true;
-              selected.push(store[0].userData);
+            var shapeStore = [];
+            var bodyStore  = [];
+            world.shapePointQuery(point, shapeStore);
+            world.bodyPointQuery(point, bodyStore);
+            if ((shapeStore[0] != undefined) &&
+                 (bodyStore[0] != undefined)) {
+                if (!(shapeStore[0].id in used_letters)) {
+                    console.log(shapeStore);
+                    used_letters[shapeStore[0].id] = true;
+                    selected.push(shapeStore[0].userData);
+                    selected_letters.push(bodyStore[0].getPosition());
+                }
             }
         }
     }
@@ -216,10 +284,15 @@ TurbulenzEngine.onload = function onloadFn()
 
               listElem.appendChild(wordListItem);
               foundWordsLists.appendChild(listElem);
+
+              correct_letters = correct_letters.concat(selected_letters);
+            } else {
+              incorrect_letters = [].concat(selected_letters);
             }
         }
         used_letters = {};
         selected     = [];
+        selected_letters = [];
     }
 
     function handleDown(mouseCode, mouseX, mouseY) {
