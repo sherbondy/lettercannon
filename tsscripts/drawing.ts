@@ -1,9 +1,11 @@
 // why does the canvas api not have a drawCircle function!?
-function drawCircle(context, color, radius, centerX, centerY) {
-    context.beginPath();
-    context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
-    context.fillStyle = color;
-    context.fill();
+function drawCircle(ctx, color, radius, centerX, centerY) {
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+    ctx.fillStyle = color;
+    ctx.fill();
+    ctx.restore();
 }
 
 function drawBottomBar(ctx, canvas){
@@ -13,6 +15,22 @@ function drawBottomBar(ctx, canvas){
     ctx.fillStyle = 'white';
     ctx.fill();
     ctx.restore();
+}
+
+function drawLetterBorderFn(ctx, color){
+    return function(id){
+        drawCircle(ctx, color, 24, letters[id].sprite.x, letters[id].sprite.y);
+    };
+}
+
+function drawLetterBorders(ctx, letters, correct_letters, incorrect_letters, selected){
+    var correctLetterFn = drawLetterBorderFn(ctx, 'limegreen');
+    var incorrectLetterFn = drawLetterBorderFn(ctx, 'crimson');
+    var selectedLetterFn = drawLetterBorderFn(ctx, 'skyblue');
+
+    correct_letters.forEach(correctLetterFn);
+    incorrect_letters.forEach(incorrectLetterFn);
+    selected.forEach(selectedLetterFn);
 }
 
 function spriteRectangle(sprite: Draw2DSprite): number[] {

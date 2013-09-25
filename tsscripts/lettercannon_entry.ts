@@ -136,22 +136,26 @@ TurbulenzEngine.onload = function onloadFn()
                     continue;
                 }
 		// Add colliding bubbles to the neighbors array
-		if (arb.shapeA.userData != null && arb.shapeB.userData != null){
-		   (neighbors[arb.shapeA.userData]).push(arb.shapeB.userData);
-		   (neighbors[arb.shapeB.userData]).push(arb.shapeA.userData);
+		if (isLetterShape(arb.shapeA) && isLetterShape(arb.shapeB)) {
+                    var idA = arb.shapeA.userData.id;
+                    var idB = arb.shapeB.userData.id;
+		   neighbors[idA].push(idB);
+		   neighbors[idB].push(idA);
 		}
-		//var stuff = [];
-		//stuff = arb.bodyA.getPosition();
+
                 arb.bodyA.setAsStatic();
                 arb.bodyB.setAsStatic();
 
+                // Maybe we should just make the cannon a physics body too instead
+                // of manually checking these private _data attrs?
+                // Currently exploiting an impl. detail of turbulenz which could change...
                 if ((70 > Math.sqrt(
                       Math.pow(center_width  - arb.bodyB._data[2], 2) +
                       Math.pow(center_height - arb.bodyB._data[3], 2))) ||
                     (70 > Math.sqrt(
-                      Math.pow(arb.bodyA._data[2] - center_width,  2) +
-                      Math.pow(arb.bodyA._data[3] - center_height, 2)))) {
-                  isOver = true;
+                        Math.pow(arb.bodyA._data[2] - center_width,  2) +
+                            Math.pow(arb.bodyA._data[3] - center_height, 2)))) {
+                    isOver = true;
                 }
             }
 
@@ -193,51 +197,14 @@ TurbulenzEngine.onload = function onloadFn()
                 // draw cannon on top of laser line
                 cannon.draw(draw2D);
             } else {
-                for (var i in correct_letters) {
-                    if (ctx.beginFrame(graphicsDevice, canvasBox)){
-                        ctx.save()
-                        ctx.beginPath();
-                        ctx.strokeStyle = 'limegreen';
-                        ctx.lineWidth   = 4;
-                        ctx.arc(letters[correct_letters[i]].sprite.x,
-                                letters[correct_letters[i]].sprite.y,
-                                22, 0, PI2, false);
-                        ctx.stroke();
-                        ctx.restore();
-                        ctx.endFrame();
-                    }
-                }
-                for (var i in incorrect_letters) {
-                    if (ctx.beginFrame(graphicsDevice, canvasBox)){
-                        ctx.save()
-                        ctx.beginPath();
-                        ctx.strokeStyle = 'crimson';
-                        ctx.lineWidth   = 4;
-                        ctx.arc(letters[incorrect_letters[i]].sprite.x,
-                                letters[incorrect_letters[i]].sprite.y,
-                                22, 0, PI2, false);
-                        ctx.stroke();
-                        ctx.restore();
-                        ctx.endFrame();
-                    }
-                }
-                for (var i in selected) {
-                    if (ctx.beginFrame(graphicsDevice, canvasBox)){
-                        ctx.save()
-                        ctx.beginPath();
-                        ctx.strokeStyle = 'skyblue';
-                        ctx.lineWidth   = 4;
-                        ctx.arc(letters[selected[i]].sprite.x,
-                                letters[selected[i]].sprite.y,
-                                22, 0, PI2, false);
-                        ctx.stroke();
-                        ctx.restore();
-                        ctx.endFrame();
-                    }
-                }
+               
             }
 
             if (ctx.beginFrame(graphicsDevice, canvasBox)){
+                if (isClearing){
+                    drawLetterBorders(ctx, letters, correct_letters, incorrect_letters, selected);
+                }
+
                 // draw the lower bar
                 drawBottomBar(ctx, canvas);
 
@@ -264,11 +231,13 @@ TurbulenzEngine.onload = function onloadFn()
             var point = draw2D.viewportMap(mouseX, mouseY);
             var shapeStore = [];
             world.shapePointQuery(point, shapeStore);
-            if ((shapeStore[0] != undefined)) {
-                if (!(shapeStore[0].id in used_letters)) {
+            var letterShape = shapeStore[0];
+            if (isLetterShape(letterShape)) {
+                var letterID = letterShape.userData.id;
+                if (!(letterID in used_letters)) {
                     console.log(shapeStore);
-                    used_letters[shapeStore[0].id] = true;
-                    selected.push(shapeStore[0].userData);
+                    used_letters[letterID] = true;
+                    selected.push(letterID);
                 }
             }
         }

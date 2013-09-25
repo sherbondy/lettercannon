@@ -80,6 +80,12 @@ function updateCurrentLetter(graphicsDevice) {
     updateNextLetter(graphicsDevice);
 }
 
+// check if a physics shape corresponds to a letter
+// by examining its userdata
+function isLetterShape(shape) {
+    return ((shape.userData !== null) &&
+            shape.userData.type === "letter");
+}
 
 class Letter {
     sprite: Draw2DSprite;
@@ -143,7 +149,7 @@ class Letter {
     getShape(phys2D) {
        var letter_id = this.id;
        return phys2D.createCircleShape({
-	   userData: letter_id,
+	   userData: {id: letter_id, type: "letter"},
            radius: letterRadius
        });
     }
