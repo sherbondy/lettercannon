@@ -1,3 +1,4 @@
 lettercannon.debug.html
 *.swp
-lettercannon.js
+templates/lettercannon.js
+
