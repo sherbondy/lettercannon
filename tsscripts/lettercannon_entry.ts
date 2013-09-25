@@ -24,6 +24,7 @@
 /// <reference path="math.ts" />
 /// <reference path="drawing.ts" />
 /// <reference path="letter.ts" />
+/// <reference path="word_check.ts" />
 /// <reference path="cannon.ts" />
 /// <reference path="laser.ts" />
 /// <reference path="gui.ts" />
@@ -59,6 +60,7 @@ TurbulenzEngine.onload = function onloadFn()
 
     inputDevice.addEventListener('mouseover', handleMouseOver);
     inputDevice.addEventListener('mouseup', handleClick);
+    inputDevice.addEventListener('mousedown', handleDown);
 
     var stageWidth = canvas.width; //meters
     var stageHeight = canvas.height - 64; //meters
@@ -106,7 +108,8 @@ TurbulenzEngine.onload = function onloadFn()
 
     // the end point of the laser line.
     var laserPointer = new Laser([canvas.width/2,canvas.height]);
-
+    var center_width  = graphicsDevice.width  / 2;
+    var center_height = graphicsDevice.height / 2 - 30;
     
     function update() {
         /* Update code goes here */
@@ -127,10 +130,19 @@ TurbulenzEngine.onload = function onloadFn()
 		   (neighbors[arb.shapeA.userData]).push(arb.shapeB.userData);
 		   (neighbors[arb.shapeB.userData]).push(arb.shapeA.userData);
 		}
-		var stuff = [];
-		stuff = arb.bodyA.getPosition();
+		//var stuff = [];
+		//stuff = arb.bodyA.getPosition();
                 arb.bodyA.setAsStatic();
                 arb.bodyB.setAsStatic();
+
+                if ((67 > Math.sqrt(
+                      Math.pow(center_width  - arb.bodyB._data[2], 2) +
+                      Math.pow(center_height - arb.bodyB._data[3], 2))) ||
+                    (67 > Math.sqrt(
+                      Math.pow(arb.bodyA._data[2] - center_width,  2) +
+                      Math.pow(arb.bodyA._data[3] - center_height, 2)))) {
+                  isOver = true;
+                }
             }
 
             laserPointer.update(cannon, canvas, world);
@@ -168,38 +180,51 @@ TurbulenzEngine.onload = function onloadFn()
     }
 
     var cannonMouseFn = cannon.mouseHandler();
+    var mouse_down    = false;
+    var used_letters  = {};
     var selected:number[] = [];
     function handleMouseOver(mouseX, mouseY) {
-        if (!isClearing){
+        if (!isClearing && !isOver){
             cannonMouseFn(mouseX, mouseY);
             currentLetterObj.placeOnCannon(cannon);
-        } else {
-		}
+        } else if (isClearing && mouse_down){
+            //currentLetterObj.shoot(cannon, world, draw2D, phys2D);
+            //updateCurrentLetter(graphicsDevice);
+            //currentLetterObj.placeOnCannon(cannon);
+            var point = draw2D.viewportMap(mouseX, mouseY);
+            var store = [];
+            world.shapePointQuery(point, store);
+            if ((store[0] != undefined) && !(store[0].id in used_letters)) {
+              used_letters[store[0].id] = true;
+              selected.push(store[0].userData);
+            }
+        }
     }
    
     function handleClick(mouseCode, mouseX, mouseY) {
-	console.log(mouseX+", "+mouseY);
-	console.log("click");
-        if (!isClearing){
+        mouse_down = false;
+        if (!isClearing && !isOver){
             currentLetterObj.shoot(cannon, world, draw2D, phys2D);
             updateCurrentLetter(graphicsDevice);
             currentLetterObj.placeOnCannon(cannon);
-        } else {
-	    console.log("selected "+selected);
-	    console.log(selected.length);
-	    if (selected.length == 0){
-	        // We are starting to enter a word
-	        console.log("started word")
-	        var point = draw2D.viewportMap(mouseX, mouseY);
-		console.log(point);
-	    	var bodies = [];
-		var numBodies = world.shapePointQuery(point, bodies);
-		console.log(numBodies);
-		// We should only have been able to click on one body
-		console.log(bodies[0]);
-	    }
+        } else if (isClearing) {
+            var word = checkWord(neighbors, selected);
+            if (word != "") {
+              var foundWordsLists = document.getElementById("found_words_list");
+              var listElem = document.createElement("li");
+              var wordListItem = document.createTextNode(word);
+
+              listElem.appendChild(wordListItem);
+              foundWordsLists.appendChild(listElem);
+            }
+        }
+        used_letters = {};
+        selected     = [];
     }
-}
+
+    function handleDown(mouseCode, mouseX, mouseY) {
+        mouse_down = true;
+    }
 
     // 60 fps
     intervalID = TurbulenzEngine.setInterval(update, 1000 / 60);

@@ -143,7 +143,7 @@ class Letter {
     getShape(phys2D) {
        var letter_id = this.id;
        return phys2D.createCircleShape({
-	   userData: letter_id,
+	       userData: letter_id,
            radius: letterRadius
        });
     }

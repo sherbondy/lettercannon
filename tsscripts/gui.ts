@@ -1,4 +1,5 @@
 var isClearing = false;
+var isOver = false;
 
 class GUI {
     toggleButton = null;
@@ -11,6 +12,7 @@ class GUI {
     toggleClearingMode() {
         isClearing = !isClearing;
         gui.toggleButton.innerHTML = gui.clearingModeText();
+        document.getElementById("found_words_list").innerHTML = "";
         gui.bgColor = isClearing ? [1,1,1,1] : [0,0,0,1];
     }
 

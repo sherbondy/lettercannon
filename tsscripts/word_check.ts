@@ -17,6 +17,7 @@
 // same word multiple times for points.
 // TODO: put typing on this
 var foundWords:string[];
+foundWords = [];
 
 // Returns empty string if selected letters do not spell a word, or if the word
 // spelled has fewer than 3 letters. 
