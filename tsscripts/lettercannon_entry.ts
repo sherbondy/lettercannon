@@ -51,16 +51,6 @@ TurbulenzEngine.onload = function onloadFn()
     var canvas = Canvas.create(graphicsDevice, md);
     var ctx = canvas.getContext('2d');
 
-    function toggleMode(){
-        if (!isClearing){
-            console.log("Back in shooting mode!");
-            // do letter removal
-            // for (var letter in correct_letters){
-            //     delete letters[letter.id];
-            // }
-        }
-    }
-
     gui.setupGUI(toggleMode);
 
     var cannon = initializeCannon(graphicsDevice, md);
@@ -89,6 +79,17 @@ TurbulenzEngine.onload = function onloadFn()
         velocityIterations : 8,
         positionIterations : 8
     });
+
+    function toggleMode(){
+        if (!isClearing){
+            console.log("Back in shooting mode!");
+            // do letter removal
+            correct_letters.forEach(function(i) {
+                world.removeRigidBody(letters[i].rigidBody);
+                delete letters[i];
+            });
+        }
+    }
 
     var thickness = 1
     var border = phys2D.createRigidBody({
@@ -192,42 +193,42 @@ TurbulenzEngine.onload = function onloadFn()
                 // draw cannon on top of laser line
                 cannon.draw(draw2D);
             } else {
-                for (var coords in correct_letters) {
+                for (var i in correct_letters) {
                     if (ctx.beginFrame(graphicsDevice, canvasBox)){
                         ctx.save()
                         ctx.beginPath();
                         ctx.strokeStyle = 'limegreen';
                         ctx.lineWidth   = 4;
-                        ctx.arc(correct_letters[coords][0],
-                                correct_letters[coords][1],
+                        ctx.arc(letters[correct_letters[i]].sprite.x,
+                                letters[correct_letters[i]].sprite.y,
                                 22, 0, PI2, false);
                         ctx.stroke();
                         ctx.restore();
                         ctx.endFrame();
                     }
                 }
-                for (var coords in incorrect_letters) {
+                for (var i in incorrect_letters) {
                     if (ctx.beginFrame(graphicsDevice, canvasBox)){
                         ctx.save()
                         ctx.beginPath();
                         ctx.strokeStyle = 'crimson';
                         ctx.lineWidth   = 4;
-                        ctx.arc(incorrect_letters[coords][0],
-                                incorrect_letters[coords][1],
+                        ctx.arc(letters[incorrect_letters[i]].sprite.x,
+                                letters[incorrect_letters[i]].sprite.y,
                                 22, 0, PI2, false);
                         ctx.stroke();
                         ctx.restore();
                         ctx.endFrame();
                     }
                 }
-                for (var coords in selected_letters) {
+                for (var i in selected) {
                     if (ctx.beginFrame(graphicsDevice, canvasBox)){
                         ctx.save()
                         ctx.beginPath();
                         ctx.strokeStyle = 'skyblue';
                         ctx.lineWidth   = 4;
-                        ctx.arc(selected_letters[coords][0],
-                                selected_letters[coords][1],
+                        ctx.arc(letters[selected[i]].sprite.x,
+                                letters[selected[i]].sprite.y,
                                 22, 0, PI2, false);
                         ctx.stroke();
                         ctx.restore();
@@ -253,7 +254,6 @@ TurbulenzEngine.onload = function onloadFn()
     var mouse_down    = false;
     var used_letters  = {};
     var selected:number[] = [];
-    var selected_letters  = [];
     var correct_letters   = [];
     var incorrect_letters = [];
     function handleMouseOver(mouseX, mouseY) {
@@ -272,7 +272,6 @@ TurbulenzEngine.onload = function onloadFn()
                     console.log(shapeStore);
                     used_letters[shapeStore[0].id] = true;
                     selected.push(shapeStore[0].userData);
-                    selected_letters.push(bodyStore[0].getPosition());
                 }
             }
         }
@@ -296,14 +295,13 @@ TurbulenzEngine.onload = function onloadFn()
               listElem.appendChild(wordListItem);
               foundWordsLists.appendChild(listElem);
 
-              correct_letters = correct_letters.concat(selected_letters);
+              correct_letters = correct_letters.concat(selected);
             } else {
-              incorrect_letters = [].concat(selected_letters);
+              incorrect_letters = [].concat(selected);
             }
         }
         used_letters = {};
         selected     = [];
-        selected_letters = [];
     }
 
     function handleDown(mouseCode, mouseX, mouseY) {
