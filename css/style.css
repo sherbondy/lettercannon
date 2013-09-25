@@ -4,7 +4,7 @@
     margin: 0 auto;
 }
 
-#found_words_list {
+#left-sidebar {
     float: left;
 }
 
@@ -14,5 +14,34 @@
     width: 500px;
     position: absolute;
     left: 50%;
-    margin-left: -250px;
+    margin: -50px 0 0 -250px;
 }
+
+#right-sidebar {
+    float: right;
+}
+
+#point-values {
+    width: 200px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+#point-values span {
+    display: block;
+    float: left;
+    margin: 4px 16px;
+    width: 16px;
+    height: 16px;
+    border-radius: 8px;
+}
+.red {background: red;}
+.orange {background: orange;}
+.silver {background: silver;}
+.green {background: green;}
+.blue {background: blue;}
+.indigo {background: indigo;}
+.purple {background: purple;}

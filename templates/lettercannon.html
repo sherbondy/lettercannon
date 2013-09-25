@@ -7,20 +7,34 @@
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
 </head>
 <body>
-    <div id="titlebar" class="ui-layout-north">
+    <div id="titlebar">
         <h1 class="title">Letter Cannon</h1>
         <div id="titlelogo"></div>
     </div>
 
     <button id="toggle_mode"></button>
 
-    <div id="sidebar" class="ui-layout-west scrollable">
+    <div id="left-sidebar">
         <h3>Found Words</h3>
         <ul id="found_words_list">
         </ul>
     </div>
 
-    <div id="engine" class="ui-layout-center">
+    <div id="right-sidebar">
+        <h3>Point values</h3>
+
+        <ul id="point-values">
+          <li><span class="red"></span> = 1</li>
+          <li><span class="orange"></span> = 2</li>
+          <li><span class="silver"></span> = 3</li>
+          <li><span class="green"></span> = 4</li>
+          <li><span class="blue"></span> = 5</li>
+          <li><span class="indigo"></span> = 8</li>
+          <li><span class="purple"></span> = 10</li>
+        </ul>
+    </div>
+
+    <div id="engine">
       /*{{ tz_engine_div }}*/
     </div>
 
