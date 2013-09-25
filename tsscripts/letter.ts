@@ -5,7 +5,7 @@ var nextLetterObj;
 
 // interface letterIDMap { [id: number]: Letter; }
 var letters = {};
-
+var neighbors = {};
 var letterBucket;
 var letterRadius = 21;
 var letterSize = letterRadius*2;
@@ -165,6 +165,7 @@ class Letter {
         this.rigidBody = liveBody;
         this.live = true;
         letters[this.id] = this;
+	neighbors[this.id] = [];
         world.addRigidBody(liveBody);
     }
 }

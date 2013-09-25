@@ -63,8 +63,6 @@ TurbulenzEngine.onload = function onloadFn()
     var stageWidth = canvas.width; //meters
     var stageHeight = canvas.height - 64; //meters
 
-    var neighbors:string[][];
-
     var draw2D = Draw2D.create({
         graphicsDevice: graphicsDevice,
         viewportRectangle: [0,0, stageWidth, stageHeight],
@@ -126,9 +124,11 @@ TurbulenzEngine.onload = function onloadFn()
                 }
 		// Add colliding bubbles to the neighbors array
 		if (arb.shapeA.userData != null && arb.shapeB.userData != null){
-		   neighbors[arb.shapeA.userData].push(arb.shapeB.userData);
-		   neighbors[arb.shapeB.userData].push(arb.shapeA.userData);
+		   (neighbors[arb.shapeA.userData]).push(arb.shapeB.userData);
+		   (neighbors[arb.shapeB.userData]).push(arb.shapeA.userData);
 		}
+		var stuff = [];
+		stuff = arb.bodyA.getPosition();
                 arb.bodyA.setAsStatic();
                 arb.bodyB.setAsStatic();
             }
@@ -168,20 +168,38 @@ TurbulenzEngine.onload = function onloadFn()
     }
 
     var cannonMouseFn = cannon.mouseHandler();
+    var selected:number[] = [];
     function handleMouseOver(mouseX, mouseY) {
         if (!isClearing){
             cannonMouseFn(mouseX, mouseY);
             currentLetterObj.placeOnCannon(cannon);
-        }
+        } else {
+		}
     }
    
     function handleClick(mouseCode, mouseX, mouseY) {
+	console.log(mouseX+", "+mouseY);
+	console.log("click");
         if (!isClearing){
             currentLetterObj.shoot(cannon, world, draw2D, phys2D);
             updateCurrentLetter(graphicsDevice);
             currentLetterObj.placeOnCannon(cannon);
-        }
+        } else {
+	    console.log("selected "+selected);
+	    console.log(selected.length);
+	    if (selected.length == 0){
+	        // We are starting to enter a word
+	        console.log("started word")
+	        var point = draw2D.viewportMap(mouseX, mouseY);
+		console.log(point);
+	    	var bodies = [];
+		var numBodies = world.shapePointQuery(point, bodies);
+		console.log(numBodies);
+		// We should only have been able to click on one body
+		console.log(bodies[0]);
+	    }
     }
+}
 
     // 60 fps
     intervalID = TurbulenzEngine.setInterval(update, 1000 / 60);
