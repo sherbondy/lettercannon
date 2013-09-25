@@ -83,7 +83,8 @@ function updateCurrentLetter(graphicsDevice) {
 // check if a physics shape corresponds to a letter
 // by examining its userdata
 function isLetterShape(shape) {
-    return ((shape.userData !== null) &&
+    return (shape !== undefined &&
+            shape.userData !== null &&
             shape.userData.type === "letter");
 }
 

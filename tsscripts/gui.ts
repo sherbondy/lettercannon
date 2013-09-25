@@ -3,6 +3,8 @@ var isOver = false;
 
 class GUI {
     toggleButton = null;
+    foundWordsList = null;
+
     bgColor = [0,0,0,1];
     toggleModeFn = function(){};
 
@@ -20,9 +22,16 @@ class GUI {
 
     setupGUI(toggleModeFn) {
         this.toggleModeFn = toggleModeFn;
-        this.toggleButton = document.getElementById("toggle_mode")
+        this.toggleButton = document.getElementById("toggle_mode");
+        this.foundWordsList = document.getElementById("found_words_list");
         this.toggleButton.innerHTML = this.clearingModeText();
         this.toggleButton.addEventListener("click", this.toggleClearingMode);
+    }
+
+    addWord(word: string) {
+        var listElem = document.createElement("li");
+        listElem.innerHTML = word;
+        this.foundWordsList.appendChild(listElem);
     }
 }
 

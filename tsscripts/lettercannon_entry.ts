@@ -51,7 +51,7 @@ TurbulenzEngine.onload = function onloadFn()
     var canvas = Canvas.create(graphicsDevice, md);
     var ctx = canvas.getContext('2d');
 
-    gui.setupGUI(toggleMode);
+    gui.setupGUI(toggleModeCallback);
 
     var cannon = initializeCannon(graphicsDevice, md);
     initializeLetters(graphicsDevice);
@@ -80,14 +80,21 @@ TurbulenzEngine.onload = function onloadFn()
         positionIterations : 8
     });
 
-    function toggleMode(){
+    function toggleModeCallback(){
         if (!isClearing){
             console.log("Back in shooting mode!");
             // do letter removal
-            correct_letters.forEach(function(i) {
-                world.removeRigidBody(letters[i].rigidBody);
-                delete letters[i];
+            correct_letters.forEach(function(id) {
+                if (id in letters){
+                    world.removeRigidBody(letters[id].rigidBody);
+                    delete letters[id];
+                }
             });
+
+            incorrect_letters  = [];
+            correct_letters   = [];
+        } else {
+
         }
     }
 
@@ -223,6 +230,7 @@ TurbulenzEngine.onload = function onloadFn()
     var selected:number[] = [];
     var correct_letters   = [];
     var incorrect_letters = [];
+
     function handleMouseOver(mouseX, mouseY) {
         if (!isClearing && !isOver){
             cannonMouseFn(mouseX, mouseY);
@@ -232,6 +240,7 @@ TurbulenzEngine.onload = function onloadFn()
             var shapeStore = [];
             world.shapePointQuery(point, shapeStore);
             var letterShape = shapeStore[0];
+
             if (isLetterShape(letterShape)) {
                 var letterID = letterShape.userData.id;
                 if (!(letterID in used_letters)) {
@@ -246,24 +255,17 @@ TurbulenzEngine.onload = function onloadFn()
     function handleClick(mouseCode, mouseX, mouseY) {
         mouse_down = false;
         if (!isClearing && !isOver){
-            incorrect_letters  = [];
-            correct_letters   = [];
             currentLetterObj.shoot(cannon, world, draw2D, phys2D);
             updateCurrentLetter(graphicsDevice);
             currentLetterObj.placeOnCannon(cannon);
         } else if (isClearing) {
             var word = checkWord(neighbors, selected);
+
             if (word != "") {
-              var foundWordsLists = document.getElementById("found_words_list");
-              var listElem = document.createElement("li");
-              var wordListItem = document.createTextNode(word);
-
-              listElem.appendChild(wordListItem);
-              foundWordsLists.appendChild(listElem);
-
-              correct_letters = correct_letters.concat(selected);
+                gui.addWord(word);
+                correct_letters = correct_letters.concat(selected);
             } else {
-              incorrect_letters = [].concat(selected);
+                incorrect_letters = [].concat(selected);
             }
         }
         used_letters = {};
