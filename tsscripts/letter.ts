@@ -95,7 +95,6 @@ class Letter {
         this.letter = letter.toLowerCase();
         this.id = ++letterCounter;
         this.points = 1;
-
         this.sprite = Draw2DSprite.create({
             width: this.size,
             height: this.size,
@@ -142,7 +141,9 @@ class Letter {
     }
 
     getShape(phys2D) {
+       var letter_id = this.id;
        return phys2D.createCircleShape({
+	   userData: letter_id,
            radius: letterRadius
        });
     }
