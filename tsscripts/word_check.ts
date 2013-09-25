@@ -18,19 +18,17 @@
 // TODO: put typing on this
 var foundWords:string[];
 foundWords = [];
+var found_words_letters:string = "";
 
 // Returns empty string if selected letters do not spell a word, or if the word
 // spelled has fewer than 3 letters. 
 // Returns the word spelled otherwise.
 function checkWord(neighbors, selected){
+   console.log(letters);
+   console.log(selected);
    var word:string = letters[selected[0]].letter;
+   found_words_letters=letters[selected[0]].id;
    if (selected.length < 3){
-      return "";
-   }
-
-   if (foundWords.indexOf(selected) != -1){
-      // Player's already selected that word in that place, don't give them
-      // more points!!
       return "";
    }
 
@@ -39,15 +37,26 @@ function checkWord(neighbors, selected){
 	// only add to the word if the letters are actually adjacent...
 	if ((i != 0) && (neighbors[selected[i-1]].indexOf(selected[i]) != -1)){
 	    word += letters[selected[i]].letter;
+	    found_words_letters += letters[selected[i]].id+",";
 	} else {
+	    found_words_letters = "";
 	    return "";
 	}
+   }
+
+   if (foundWords.indexOf(found_words_letters) != -1){
+      // Player's already selected that word in that place, don't give them
+      // more points!!
+      found_words_letters = "";
+      return "";
    }
 
    // We have the word, now see if it's in the dictionary (assets/words)
    if (dictionary.indexOf(word) != -1){
        // add the sequence of letters (not the word itself) to an array
-       foundWords.push(selected);
+       console.log(found_words_letters);
+       foundWords.push(found_words_letters);
+       found_words_letters = "";
        return word.charAt(0).toUpperCase() + word.slice(1);
    } else {
        return "";
