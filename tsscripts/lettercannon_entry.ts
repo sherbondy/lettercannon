@@ -24,7 +24,6 @@
 /// <reference path="math.ts" />
 /// <reference path="drawing.ts" />
 /// <reference path="letter.ts" />
-/// <reference path="word_check.ts" />
 /// <reference path="cannon.ts" />
 /// <reference path="laser.ts" />
 /// <reference path="gui.ts" />
@@ -135,10 +134,10 @@ TurbulenzEngine.onload = function onloadFn()
                 arb.bodyA.setAsStatic();
                 arb.bodyB.setAsStatic();
 
-                if ((67 > Math.sqrt(
+                if ((70 > Math.sqrt(
                       Math.pow(center_width  - arb.bodyB._data[2], 2) +
                       Math.pow(center_height - arb.bodyB._data[3], 2))) ||
-                    (67 > Math.sqrt(
+                    (70 > Math.sqrt(
                       Math.pow(arb.bodyA._data[2] - center_width,  2) +
                       Math.pow(arb.bodyA._data[3] - center_height, 2)))) {
                   isOver = true;
