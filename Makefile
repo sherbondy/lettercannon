@@ -1,4 +1,5 @@
 INPUT= $(shell find tsscripts -name "*.ts")
+INPUT+=templates/lettercannon.html
 OUTPUT=lettercannon.debug.html templates/lettercannon.js
 
 $(OUTPUT): $(INPUT)

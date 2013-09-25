@@ -7,3 +7,12 @@
 #found_words_list {
     float: left;
 }
+
+#toggle_mode {
+    display: block;
+    font-size: 24px;
+    width: 500px;
+    position: absolute;
+    left: 50%;
+    margin-left: -250px;
+}
