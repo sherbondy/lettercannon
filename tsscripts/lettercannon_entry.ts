@@ -29,7 +29,7 @@
 /// <reference path="gui.ts" />
 /// <reference path="main.ts" />
 /// <reference path="util.ts" />
-
+/// <reference path="word_check.ts" />
 
 // NOTES:
 /*
@@ -62,6 +62,8 @@ TurbulenzEngine.onload = function onloadFn()
 
     var stageWidth = canvas.width; //meters
     var stageHeight = canvas.height - 64; //meters
+
+    var neighbors:string[][];
 
     var draw2D = Draw2D.create({
         graphicsDevice: graphicsDevice,
@@ -122,6 +124,11 @@ TurbulenzEngine.onload = function onloadFn()
                 if (!arb.active){
                     continue;
                 }
+		// Add colliding bubbles to the neighbors array
+		if (arb.shapeA.userData != null && arb.shapeB.userData != null){
+		   neighbors[arb.shapeA.userData].push(arb.shapeB.userData);
+		   neighbors[arb.shapeB.userData].push(arb.shapeA.userData);
+		}
                 arb.bodyA.setAsStatic();
                 arb.bodyB.setAsStatic();
             }

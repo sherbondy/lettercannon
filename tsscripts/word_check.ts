@@ -16,13 +16,13 @@
 // Array of already-picked words, to prevent players from re-spelling the
 // same word multiple times for points.
 // TODO: put typing on this
-var foundWords = new Array();
+var foundWords:string[];
 
 // Returns empty string if selected letters do not spell a word, or if the word
 // spelled has fewer than 3 letters. 
 // Returns the word spelled otherwise.
-function checkWord(selected){
-   string word;
+function checkWord(neighbors, selected){
+   var word:string;
    if (selected.length < 3){
       return "";
    }
@@ -32,17 +32,17 @@ function checkWord(selected){
       // more points!!
       return "";
    }
-   for (number i = 0; i < selected.length; i++){
+   for (var i:number = 0; i < selected.length; i++){
 	// letters array maps numbers to letters
 	// only add to the word if the letters are actually adjacent...
-	if (i != 0 and neighbors[selected[i-1]].indexOf(selected[i]) != -1){
+	if (i != 0 && neighbors[selected[i-1]].indexOf(selected[i]) != -1){
 	    word += letters[i];
 	} else {
 	    return "";
 	}
    }
    // We have the word, now see if it's in the dictionary (assets/words)
-   if (words.indexOf[word] != -1){
+   if (dictionary.indexOf[word] != -1){
        // add the sequence of letters (not the word itself) to an array
        foundWords.push(selected);
        return word;
