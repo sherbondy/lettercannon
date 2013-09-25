@@ -39,9 +39,21 @@ We can use http://docs.turbulenz.com/jslibrary_api/physics2d_world_api.html#shap
 // indicate whether we're in clearing mode or not
 
 /* Game code goes here */
+var duration = 60*60*5; // 5 minutes
+
 TurbulenzEngine.onload = function onloadFn()
 {
     var intervalID;
+    var score: number = 0;
+    var startTime: number;
+
+    var mouse_down:bool = false;
+    var used_letters = {};
+    // all of these are arrays of letter ids
+    var selected = [];
+    var correct_letters = [];
+    var incorrect_letters = [];
+
     var graphicsDevice = TurbulenzEngine.createGraphicsDevice({});
     var inputDevice = TurbulenzEngine.createInputDevice({});
     var md = TurbulenzEngine.createMathDevice({});
@@ -100,7 +112,7 @@ TurbulenzEngine.onload = function onloadFn()
             incorrect_letters  = [];
             correct_letters   = [];
         } else {
-
+            // handle clearing mode setup logic here
         }
     }
 
@@ -134,10 +146,36 @@ TurbulenzEngine.onload = function onloadFn()
     var center_width  = graphicsDevice.width  / 2;
     var center_height = graphicsDevice.height / 2 - 30;
     
+    function timeRemaining(){
+        if (isOver){
+            return 0;
+        }
+        var now = TurbulenzEngine.time;
+        var playTime = now - startTime;
+        // 5 minutes - time played so far
+        return Math.max(duration - playTime, 0);
+    }
+    
     function update() {
+        if (isOver){
+            TurbulenzEngine.clearInterval(intervalID);
+            var replay = confirm("Game Over! You scored: " + score +" points.\n"+
+                                 "Play again?");
+            if (replay){
+                restartGame();
+            }
+            return;
+        }
+
         /* Update code goes here */
 
         var canvasBox = md.v4Build(0,0, canvas.width, canvas.height);
+    
+        var timeLeft = timeRemaining();
+        gui.updateTime(timeLeft);
+        if (timeLeft <= 0) {
+            isOver = true;
+        }
 
         if (graphicsDevice.beginFrame())
         {
@@ -215,7 +253,8 @@ TurbulenzEngine.onload = function onloadFn()
 
             if (ctx.beginFrame(graphicsDevice, canvasBox)){
                 if (isClearing){
-                    drawLetterBorders(ctx, letters, correct_letters, incorrect_letters, selected);
+                    drawLetterBorders(ctx, letters, correct_letters, 
+                                      incorrect_letters, selected);
                 }
 
                 // draw the lower bar
@@ -231,11 +270,6 @@ TurbulenzEngine.onload = function onloadFn()
     }
 
     var cannonMouseFn = cannon.mouseHandler();
-    var mouse_down    = false;
-    var used_letters  = {};
-    var selected:number[] = [];
-    var correct_letters   = [];
-    var incorrect_letters = [];
 
     function handleMouseOver(mouseX, mouseY) {
         if (!isClearing && !isOver){
@@ -283,5 +317,16 @@ TurbulenzEngine.onload = function onloadFn()
     }
 
     // 60 fps
-    intervalID = TurbulenzEngine.setInterval(update, 1000 / 60);
+    restartGame();
+
+    function restartGame(){
+        intervalID = TurbulenzEngine.setInterval(update, 1000 / 60);
+        isOver = false;
+        startTime = TurbulenzEngine.time;
+
+        for (var id in letters){
+            world.removeRigidBody(letters[id].rigidBody);
+        }
+        letters = {};
+    }
 }
