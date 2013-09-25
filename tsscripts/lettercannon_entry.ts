@@ -88,6 +88,12 @@ TurbulenzEngine.onload = function onloadFn()
                 if (id in letters){
                     world.removeRigidBody(letters[id].rigidBody);
                     delete letters[id];
+                    // make neighbors dynamic once more.
+                    neighbors[id].forEach(function(nid){
+                        if (nid in letters){
+                            letters[nid].makeDynamic();
+                        }
+                    });
                 }
             });
 

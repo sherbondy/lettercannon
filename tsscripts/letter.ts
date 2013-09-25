@@ -96,6 +96,7 @@ class Letter {
     live: bool = false;
     size: number = letterSize;
     rigidBody: any = null;
+    velocity: number[];
 
     // physics object...
     constructor(letter: string, x: number = 0, y: number = 0) {
@@ -155,9 +156,16 @@ class Letter {
        });
     }
 
+    makeDynamic() {
+        this.rigidBody.setAsDynamic();
+        this.rigidBody.setVelocity(this.velocity);
+        this.live = true;
+    }
+
     shoot(cannon, world, draw2D, phys2D) {
         var letterPoint = draw2D.viewportMap(this.sprite.x, 
                                              this.sprite.y);
+
         var liveBody = phys2D.createRigidBody({
             shapes: [this.getShape(phys2D)],
             position: letterPoint
@@ -167,10 +175,10 @@ class Letter {
         // scale velocity vector by desired speed;
         var trueVelo = md.v2ScalarMul(veloVector, letterSpeed);
         var veloArray = MathDeviceConvert.v2ToArray(trueVelo);
-
-        liveBody.setVelocity(veloArray);
+        this.velocity = veloArray;
         this.rigidBody = liveBody;
-        this.live = true;
+        this.makeDynamic();
+
         letters[this.id] = this;
 	neighbors[this.id] = [];
         world.addRigidBody(liveBody);
