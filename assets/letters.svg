@@ -25,10 +25,10 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="2.2167635"
-     inkscape:cx="391.11309"
-     inkscape:cy="427.3115"
+     inkscape:cx="442.4888"
+     inkscape:cy="445.35582"
      inkscape:document-units="px"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="layer2"
      showgrid="true"
      inkscape:window-width="1360"
      inkscape:window-height="718"
@@ -52,6 +52,21 @@
     </rdf:RDF>
   </metadata>
   <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="bg">
+    <rect
+       style="fill:#000000;fill-opacity:1;stroke:none"
+       id="rect3081"
+       width="194"
+       height="194"
+       x="314"
+       y="504.36218"
+       inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76" />
+  </g>
+  <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1">
@@ -66,8 +81,8 @@
        d="m 185,187.36218 a 20,20 0 1 1 -40,0 20,20 0 1 1 40,0 z"
        transform="matrix(0.74463933,0,0,0.74463932,208.0273,380.84493)"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99" />
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76" />
     <path
        sodipodi:type="arc"
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.97382498;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
@@ -79,8 +94,8 @@
        d="m 185,187.36218 a 20,20 0 1 1 -40,0 20,20 0 1 1 40,0 z"
        transform="matrix(0.74463933,0,0,0.74463932,240.0273,380.84493)"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99" />
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76" />
     <path
        sodipodi:type="arc"
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.97382498;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
@@ -92,8 +107,8 @@
        d="m 185,187.36218 a 20,20 0 1 1 -40,0 20,20 0 1 1 40,0 z"
        transform="matrix(0.74463933,0,0,0.74463932,272.0273,380.84493)"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99" />
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76" />
     <path
        sodipodi:type="arc"
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.97382498;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
@@ -105,8 +120,8 @@
        d="m 185,187.36218 a 20,20 0 1 1 -40,0 20,20 0 1 1 40,0 z"
        transform="matrix(0.74463933,0,0,0.74463932,304.0273,380.84493)"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99" />
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76" />
     <path
        sodipodi:type="arc"
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.97382498;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
@@ -118,8 +133,8 @@
        d="m 185,187.36218 a 20,20 0 1 1 -40,0 20,20 0 1 1 40,0 z"
        transform="matrix(0.74463933,0,0,0.74463932,336.0273,380.84493)"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99" />
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76" />
     <path
        sodipodi:type="arc"
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.97382498;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
@@ -131,8 +146,8 @@
        d="m 185,187.36218 a 20,20 0 1 1 -40,0 20,20 0 1 1 40,0 z"
        transform="matrix(0.74463933,0,0,0.74463932,368.0273,380.84493)"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99" />
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76" />
     <path
        sodipodi:type="arc"
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.97382498;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
@@ -144,8 +159,8 @@
        d="m 185,187.36218 a 20,20 0 1 1 -40,0 20,20 0 1 1 40,0 z"
        transform="matrix(0.74463933,0,0,0.74463932,208.0273,413.01485)"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99" />
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76" />
     <path
        sodipodi:type="arc"
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.97382498;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
@@ -157,8 +172,8 @@
        d="m 185,187.36218 a 20,20 0 1 1 -40,0 20,20 0 1 1 40,0 z"
        transform="matrix(0.74463933,0,0,0.74463932,240.0273,412.84493)"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99" />
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76" />
     <path
        sodipodi:type="arc"
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.97382498;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
@@ -170,8 +185,8 @@
        d="m 185,187.36218 a 20,20 0 1 1 -40,0 20,20 0 1 1 40,0 z"
        transform="matrix(0.74463933,0,0,0.74463932,272.0273,412.84493)"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99" />
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76" />
     <path
        sodipodi:type="arc"
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.97382498;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
@@ -183,8 +198,8 @@
        d="m 185,187.36218 a 20,20 0 1 1 -40,0 20,20 0 1 1 40,0 z"
        transform="matrix(0.74463933,0,0,0.74463932,304.0273,412.84493)"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99" />
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76" />
     <path
        sodipodi:type="arc"
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.97382498;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
@@ -196,8 +211,8 @@
        d="m 185,187.36218 a 20,20 0 1 1 -40,0 20,20 0 1 1 40,0 z"
        transform="matrix(0.74463933,0,0,0.74463932,336.0273,412.84493)"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99" />
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76" />
     <path
        sodipodi:type="arc"
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.97382498;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
@@ -209,8 +224,8 @@
        d="m 185,187.36218 a 20,20 0 1 1 -40,0 20,20 0 1 1 40,0 z"
        transform="matrix(0.74463933,0,0,0.74463932,368.0273,412.84493)"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99" />
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76" />
     <path
        sodipodi:type="arc"
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.97382498;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
@@ -222,8 +237,8 @@
        d="m 185,187.36218 a 20,20 0 1 1 -40,0 20,20 0 1 1 40,0 z"
        transform="matrix(0.74463933,0,0,0.74463932,208.0273,444.84493)"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99" />
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76" />
     <path
        sodipodi:type="arc"
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.97382498;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
@@ -235,8 +250,8 @@
        d="m 185,187.36218 a 20,20 0 1 1 -40,0 20,20 0 1 1 40,0 z"
        transform="matrix(0.74463933,0,0,0.74463932,240.0273,444.84493)"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99" />
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76" />
     <path
        sodipodi:type="arc"
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.97382498;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
@@ -248,8 +263,8 @@
        d="m 185,187.36218 a 20,20 0 1 1 -40,0 20,20 0 1 1 40,0 z"
        transform="matrix(0.74463933,0,0,0.74463932,272.0273,444.84493)"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99" />
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76" />
     <path
        sodipodi:type="arc"
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.97382498;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
@@ -261,8 +276,8 @@
        d="m 185,187.36218 a 20,20 0 1 1 -40,0 20,20 0 1 1 40,0 z"
        transform="matrix(0.74463933,0,0,0.74463932,304.0273,444.84493)"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99" />
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76" />
     <path
        sodipodi:type="arc"
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.97382498;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
@@ -274,8 +289,8 @@
        d="m 185,187.36218 a 20,20 0 1 1 -40,0 20,20 0 1 1 40,0 z"
        transform="matrix(0.74463933,0,0,0.74463932,336.0273,444.84493)"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99" />
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76" />
     <path
        sodipodi:type="arc"
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.97382498;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
@@ -287,8 +302,8 @@
        d="m 185,187.36218 a 20,20 0 1 1 -40,0 20,20 0 1 1 40,0 z"
        transform="matrix(0.74463933,0,0,0.74463932,368.0273,444.84493)"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99" />
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76" />
     <path
        sodipodi:type="arc"
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.97382498;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
@@ -300,8 +315,8 @@
        d="m 185,187.36218 a 20,20 0 1 1 -40,0 20,20 0 1 1 40,0 z"
        transform="matrix(0.74463933,0,0,0.74463932,208.0273,476.84494)"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99" />
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76" />
     <path
        sodipodi:type="arc"
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.97382498;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
@@ -313,8 +328,8 @@
        d="m 185,187.36218 a 20,20 0 1 1 -40,0 20,20 0 1 1 40,0 z"
        transform="matrix(0.74463933,0,0,0.74463932,240.0273,476.84494)"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99" />
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76" />
     <path
        sodipodi:type="arc"
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.97382498;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
@@ -326,8 +341,8 @@
        d="m 185,187.36218 a 20,20 0 1 1 -40,0 20,20 0 1 1 40,0 z"
        transform="matrix(0.74463933,0,0,0.74463932,272.0273,476.84494)"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99" />
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76" />
     <path
        sodipodi:type="arc"
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.97382498;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
@@ -339,8 +354,8 @@
        d="m 185,187.36218 a 20,20 0 1 1 -40,0 20,20 0 1 1 40,0 z"
        transform="matrix(0.74463933,0,0,0.74463932,304.0273,476.84494)"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99" />
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76" />
     <path
        sodipodi:type="arc"
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.97382498;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
@@ -352,8 +367,8 @@
        d="m 185,187.36218 a 20,20 0 1 1 -40,0 20,20 0 1 1 40,0 z"
        transform="matrix(0.74463933,0,0,0.74463932,336.0273,476.84494)"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99" />
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76" />
     <path
        sodipodi:type="arc"
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.97382498;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
@@ -365,8 +380,8 @@
        d="m 185,187.36218 a 20,20 0 1 1 -40,0 20,20 0 1 1 40,0 z"
        transform="matrix(0.74463933,0,0,0.74463932,368.0273,476.84494)"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99" />
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76" />
     <path
        sodipodi:type="arc"
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.97382498;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
@@ -378,8 +393,8 @@
        d="m 185,187.36218 a 20,20 0 1 1 -40,0 20,20 0 1 1 40,0 z"
        transform="matrix(0.74463933,0,0,0.74463932,208.0273,508.84493)"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99" />
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76" />
     <path
        sodipodi:type="arc"
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.97382498;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
@@ -391,8 +406,8 @@
        d="m 185,187.36218 a 20,20 0 1 1 -40,0 20,20 0 1 1 40,0 z"
        transform="matrix(0.74463933,0,0,0.74463932,240.0273,508.84493)"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99" />
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76" />
     <path
        sodipodi:type="arc"
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.97382498;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
@@ -404,8 +419,8 @@
        d="m 185,187.36218 a 20,20 0 1 1 -40,0 20,20 0 1 1 40,0 z"
        transform="matrix(0.74463933,0,0,0.74463932,272.0273,508.84493)"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99" />
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76" />
     <path
        sodipodi:type="arc"
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.97382498;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
@@ -417,8 +432,8 @@
        d="m 185,187.36218 a 20,20 0 1 1 -40,0 20,20 0 1 1 40,0 z"
        transform="matrix(0.74463933,0,0,0.74463932,304.0273,508.84493)"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99" />
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76" />
     <path
        sodipodi:type="arc"
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.97382498;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
@@ -430,8 +445,8 @@
        d="m 185,187.36218 a 20,20 0 1 1 -40,0 20,20 0 1 1 40,0 z"
        transform="matrix(0.74463933,0,0,0.74463932,336.0273,508.84493)"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99" />
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76" />
     <path
        sodipodi:type="arc"
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.97382498;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
@@ -443,8 +458,8 @@
        d="m 185,187.36218 a 20,20 0 1 1 -40,0 20,20 0 1 1 40,0 z"
        transform="matrix(0.74463933,0,0,0.74463932,368.0273,508.84493)"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99" />
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76" />
     <path
        sodipodi:type="arc"
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.97382498;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
@@ -456,8 +471,8 @@
        d="m 185,187.36218 a 20,20 0 1 1 -40,0 20,20 0 1 1 40,0 z"
        transform="matrix(0.74463933,0,0,0.74463932,208.0273,540.84495)"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99" />
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76" />
     <path
        sodipodi:type="arc"
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.97382498;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
@@ -469,8 +484,8 @@
        d="m 185,187.36218 a 20,20 0 1 1 -40,0 20,20 0 1 1 40,0 z"
        transform="matrix(0.74463933,0,0,0.74463932,240.0273,540.84495)"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99" />
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76" />
     <path
        sodipodi:type="arc"
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.97382498;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
@@ -482,8 +497,8 @@
        d="m 185,187.36218 a 20,20 0 1 1 -40,0 20,20 0 1 1 40,0 z"
        transform="matrix(0.74463933,0,0,0.74463932,272.0273,540.84495)"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99" />
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76" />
     <path
        sodipodi:type="arc"
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.97382498;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
@@ -495,8 +510,8 @@
        d="m 185,187.36218 a 20,20 0 1 1 -40,0 20,20 0 1 1 40,0 z"
        transform="matrix(0.74463933,0,0,0.74463932,304.0273,540.84495)"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99" />
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76" />
     <path
        sodipodi:type="arc"
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.97382498;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
@@ -508,8 +523,8 @@
        d="m 185,187.36218 a 20,20 0 1 1 -40,0 20,20 0 1 1 40,0 z"
        transform="matrix(0.74463933,0,0,0.74463932,336.0273,540.84495)"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99" />
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76" />
     <path
        sodipodi:type="arc"
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.97382498;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
@@ -521,8 +536,8 @@
        d="m 185,187.36218 a 20,20 0 1 1 -40,0 20,20 0 1 1 40,0 z"
        transform="matrix(0.74463933,0,0,0.74463932,368.0273,540.84495)"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99" />
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76" />
     <text
        xml:space="preserve"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
@@ -531,8 +546,8 @@
        id="text3338"
        sodipodi:linespacing="125%"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99"><tspan
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76"><tspan
          sodipodi:role="line"
          id="tspan3340"
          x="322.68967"
@@ -546,8 +561,8 @@
        id="text3338-9"
        sodipodi:linespacing="125%"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99"><tspan
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76"><tspan
          sodipodi:role="line"
          id="tspan3340-4"
          x="354.33224"
@@ -561,8 +576,8 @@
        id="text3338-9-3"
        sodipodi:linespacing="125%"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99"><tspan
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76"><tspan
          sodipodi:role="line"
          id="tspan3340-4-9"
          x="386.49045"
@@ -576,8 +591,8 @@
        id="text3338-9-2"
        sodipodi:linespacing="125%"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99"><tspan
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76"><tspan
          sodipodi:role="line"
          id="tspan3340-4-7"
          x="417.18381"
@@ -591,8 +606,8 @@
        id="text3338-9-5"
        sodipodi:linespacing="125%"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99"><tspan
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76"><tspan
          sodipodi:role="line"
          id="tspan3340-4-8"
          x="450.9006"
@@ -606,8 +621,8 @@
        id="text3338-9-1"
        sodipodi:linespacing="125%"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99"><tspan
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76"><tspan
          sodipodi:role="line"
          id="tspan3340-4-1"
          x="483.50998"
@@ -621,8 +636,8 @@
        id="text3338-9-23"
        sodipodi:linespacing="125%"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99"><tspan
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76"><tspan
          sodipodi:role="line"
          id="tspan3340-4-92"
          x="321.90451"
@@ -636,8 +651,8 @@
        id="text3338-9-50"
        sodipodi:linespacing="125%"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99"><tspan
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76"><tspan
          sodipodi:role="line"
          id="tspan3340-4-86"
          x="353.86935"
@@ -651,8 +666,8 @@
        id="text3338-9-7"
        sodipodi:linespacing="125%"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99"><tspan
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76"><tspan
          sodipodi:role="line"
          id="tspan3340-4-0"
          x="391.35373"
@@ -666,8 +681,8 @@
        id="text3338-9-6"
        sodipodi:linespacing="125%"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99"><tspan
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76"><tspan
          sodipodi:role="line"
          id="tspan3340-4-2"
          x="425.15256"
@@ -681,8 +696,8 @@
        id="text3338-9-17"
        sodipodi:linespacing="125%"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99"><tspan
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76"><tspan
          sodipodi:role="line"
          id="tspan3340-4-72"
          x="449.59396"
@@ -696,8 +711,8 @@
        id="text3338-9-8"
        sodipodi:linespacing="125%"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99"><tspan
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76"><tspan
          sodipodi:role="line"
          id="tspan3340-4-5"
          x="483.09396"
@@ -711,8 +726,8 @@
        id="text3338-9-25"
        sodipodi:linespacing="125%"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99"><tspan
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76"><tspan
          sodipodi:role="line"
          id="tspan3340-4-6"
          x="320.53342"
@@ -726,8 +741,8 @@
        id="text3338-9-38"
        sodipodi:linespacing="125%"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99"><tspan
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76"><tspan
          sodipodi:role="line"
          id="tspan3340-4-61"
          x="353.91623"
@@ -741,8 +756,8 @@
        id="text3338-9-67"
        sodipodi:linespacing="125%"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99"><tspan
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76"><tspan
          sodipodi:role="line"
          id="tspan3340-4-20"
          x="385.44748"
@@ -756,8 +771,8 @@
        id="text3338-9-22"
        sodipodi:linespacing="125%"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99"><tspan
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76"><tspan
          sodipodi:role="line"
          id="tspan3340-4-57"
          x="418.88889"
@@ -771,8 +786,8 @@
        id="text3338-9-4"
        sodipodi:linespacing="125%"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99"><tspan
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76"><tspan
          sodipodi:role="line"
          id="tspan3340-4-3"
          x="449.44748"
@@ -786,8 +801,8 @@
        id="text3338-9-51"
        sodipodi:linespacing="125%"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99"><tspan
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76"><tspan
          sodipodi:role="line"
          id="tspan3340-4-34"
          x="481.72287"
@@ -801,8 +816,8 @@
        id="text3338-9-66"
        sodipodi:linespacing="125%"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99"><tspan
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76"><tspan
          sodipodi:role="line"
          id="tspan3340-4-13"
          x="323.15256"
@@ -816,8 +831,8 @@
        id="text3338-9-19"
        sodipodi:linespacing="125%"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99"><tspan
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76"><tspan
          sodipodi:role="line"
          id="tspan3340-4-83"
          x="355.56271"
@@ -831,8 +846,8 @@
        id="text3338-9-14"
        sodipodi:linespacing="125%"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99"><tspan
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76"><tspan
          sodipodi:role="line"
          id="tspan3340-4-56"
          x="386.10959"
@@ -846,8 +861,8 @@
        id="text3338-9-0"
        sodipodi:linespacing="125%"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99"><tspan
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76"><tspan
          sodipodi:role="line"
          id="tspan3340-4-96"
          x="418.68967"
@@ -861,8 +876,8 @@
        id="text3338-9-80"
        sodipodi:linespacing="125%"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99"><tspan
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76"><tspan
          sodipodi:role="line"
          id="tspan3340-4-4"
          x="447.0217"
@@ -876,8 +891,8 @@
        id="text3338-9-74"
        sodipodi:linespacing="125%"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99"><tspan
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76"><tspan
          sodipodi:role="line"
          id="tspan3340-4-52"
          x="482.68967"
@@ -891,8 +906,8 @@
        id="text3338-9-801"
        sodipodi:linespacing="125%"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99"><tspan
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76"><tspan
          sodipodi:role="line"
          id="tspan3340-4-23"
          x="323.56271"
@@ -906,8 +921,8 @@
        id="text3338-9-76"
        sodipodi:linespacing="125%"
        inkscape:export-filename="/home/ethanis/Dropbox/MIT/Senior/6.073/lettercannon/assets/letters.png"
-       inkscape:export-xdpi="119.99"
-       inkscape:export-ydpi="119.99"><tspan
+       inkscape:export-xdpi="118.76"
+       inkscape:export-ydpi="118.76"><tspan
          sodipodi:role="line"
          id="tspan3340-4-81"
          x="354.67209"
