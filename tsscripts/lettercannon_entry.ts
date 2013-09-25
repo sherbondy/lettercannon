@@ -263,11 +263,8 @@ TurbulenzEngine.onload = function onloadFn()
         } else if (isClearing && mouse_down){
             var point = draw2D.viewportMap(mouseX, mouseY);
             var shapeStore = [];
-            var bodyStore  = [];
             world.shapePointQuery(point, shapeStore);
-            world.bodyPointQuery(point, bodyStore);
-            if ((shapeStore[0] != undefined) &&
-                 (bodyStore[0] != undefined)) {
+            if ((shapeStore[0] != undefined)) {
                 if (!(shapeStore[0].id in used_letters)) {
                     console.log(shapeStore);
                     used_letters[shapeStore[0].id] = true;
