@@ -51,7 +51,17 @@ TurbulenzEngine.onload = function onloadFn()
     var canvas = Canvas.create(graphicsDevice, md);
     var ctx = canvas.getContext('2d');
 
-    gui.setupGUI();
+    function toggleMode(){
+        if (!isClearing){
+            console.log("Back in shooting mode!");
+            // do letter removal
+            // for (var letter in correct_letters){
+            //     delete letters[letter.id];
+            // }
+        }
+    }
+
+    gui.setupGUI(toggleMode);
 
     var cannon = initializeCannon(graphicsDevice, md);
     initializeLetters(graphicsDevice);
