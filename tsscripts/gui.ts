@@ -65,7 +65,8 @@ class GUI {
     }
 
     updateTime(time: number) {
-        var minutes = Math.floor(time / (60*60));
+        // time is in seconds
+        var minutes = Math.floor(time / 60);
         var seconds = Math.floor(time % 60);
         this.timerElem.innerHTML = ("" + minutes + ":" + padZeroes(seconds, 2));
     }

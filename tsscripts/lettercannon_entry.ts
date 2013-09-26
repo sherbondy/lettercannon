@@ -39,7 +39,7 @@ We can use http://docs.turbulenz.com/jslibrary_api/physics2d_world_api.html#shap
 // indicate whether we're in clearing mode or not
 
 /* Game code goes here */
-var duration = 60*60*5; // 5 minutes
+var duration = 60*5; // 5 minutes in seconds
 
 TurbulenzEngine.onload = function onloadFn()
 {
@@ -72,6 +72,11 @@ TurbulenzEngine.onload = function onloadFn()
     inputDevice.addEventListener('mouseover', handleMouseOver);
     inputDevice.addEventListener('mouseup', handleClick);
     inputDevice.addEventListener('mousedown', handleDown);
+
+    // handle touch events! start and move are identical
+    inputDevice.addEventListener('touchstart', handleTouchMove);
+    inputDevice.addEventListener('touchmove', handleTouchMove);
+    inputDevice.addEventListener('touchend', handleTouchEnd);
 
     var stageWidth = canvas.width; //meters
     var stageHeight = canvas.height - 64; //meters
@@ -122,7 +127,7 @@ TurbulenzEngine.onload = function onloadFn()
                     roundScore += letter_points[letter];
                 }
             });
-            debugger;
+
             roundScore *= words.length;
             score += roundScore;
             gui.updateScore(score);
@@ -169,6 +174,7 @@ TurbulenzEngine.onload = function onloadFn()
         if (isOver){
             return 0;
         }
+        // turbulenz reports time in seconds
         var now = TurbulenzEngine.time;
         var playTime = now - startTime;
         // 5 minutes - time played so far
@@ -290,6 +296,13 @@ TurbulenzEngine.onload = function onloadFn()
 
     var cannonMouseFn = cannon.mouseHandler();
 
+    // just pipes to mouse over fn
+    function handleTouchMove(touchEvent) {
+        var movedTouches = touchEvent.changedTouches;
+        var oneTouch = movedTouches[0];
+        handleMouseOver(oneTouch.positionX, oneTouch.positionY);
+    }
+
     function handleMouseOver(mouseX, mouseY) {
         if (!isClearing && !isOver){
             cannonMouseFn(mouseX, mouseY);
@@ -309,6 +322,12 @@ TurbulenzEngine.onload = function onloadFn()
                 }
             }
         }
+    }
+
+    function handleTouchEnd(touchEvent) {
+        var endTouches = touchEvent.changedTouches;
+        var oneTouch = endTouches[0];
+        handleClick(0, oneTouch.positionX, oneTouch.positionY);
     }
    
     function handleClick(mouseCode, mouseX, mouseY) {
