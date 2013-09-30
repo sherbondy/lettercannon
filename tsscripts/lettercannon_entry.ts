@@ -384,6 +384,7 @@ TurbulenzEngine.onload = function onloadFn()
 			neighbors[grid_neighbors[i][j+1]].push(grid_neighbors[i][j]);
 	                
 		    }
+                    // also need to check diagonals...
 		}
 	    }
 	}
