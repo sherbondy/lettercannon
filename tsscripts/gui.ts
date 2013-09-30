@@ -32,18 +32,18 @@ class GUI {
     toggleModeFn = function(){};
 
     clearingModeText(): string {
-        return isClearing ? "Enter Shooting Mode" : "Enter Word Clearing Mode";
+        return "Clear Words!";
     }
 
     toggleClearingMode() {
         // the reason this doesn't work here is because this
         // is set to the caller. Should be fixable with better
         // code organization.
-        isClearing = !isClearing;
+        //isClearing = !isClearing;
         gui.toggleModeFn();
         gui.toggleButton.innerHTML = gui.clearingModeText();
-        document.getElementById("found_words_list").innerHTML = "";
-        gui.bgColor = isClearing ? [1,1,1,1] : [0,0,0,1];
+        //document.getElementById("found_words_list").innerHTML = "";
+        //gui.bgColor = isClearing ? [1,1,1,1] : [0,0,0,1];
     }
 
     setupGUI(toggleModeFn) {

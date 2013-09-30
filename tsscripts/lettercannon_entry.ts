@@ -100,46 +100,47 @@ TurbulenzEngine.onload = function onloadFn()
     });
 
     function toggleModeCallback(){
-        if (!isClearing){
-            console.log("Back in shooting mode!");
-            // do letter removal
-            correct_letters.forEach(function(id) {
-                if (id in letters){
-                    world.removeRigidBody(letters[id].rigidBody);
-                    delete letters[id];
-                    // make neighbors dynamic once more.
-                    neighbors[id].forEach(function(nid){
-                        if (nid in letters){
-                            letters[nid].makeDynamic();
-                        }
-                    });
-                }
-            });
+        // if (!isClearing){
+        //     console.log("Back in shooting mode!");
+        //     // do letter removal
+        //     correct_letters.forEach(function(id) {
+        //         if (id in letters){
+        //             world.removeRigidBody(letters[id].rigidBody);
+        //             delete letters[id];
+        //             // make neighbors dynamic once more.
+        //             neighbors[id].forEach(function(nid){
+        //                 if (nid in letters){
+        //                     letters[nid].makeDynamic();
+        //                 }
+        //             });
+        //         }
+        //     });
 
-            /* current naive scoring algorithm:
-               give player points for every letter in every word
-               (even overlapping ones).
-               Then give multiplier bonus based on *quantity*
-               of words made that round.
-            */
-            var roundScore = 0;
-            words.forEach(function(word){
-                for(var i = 0; i < word.length; i++){
-                    var letter = word.charAt(i).toLowerCase();
-                    roundScore += letter_points[letter];
-                }
-            });
+        //     /* current naive scoring algorithm:
+        //        give player points for every letter in every word
+        //        (even overlapping ones).
+        //        Then give multiplier bonus based on *quantity*
+        //        of words made that round.
+        //     */
+        //     var roundScore = 0;
+        //     words.forEach(function(word){
+        //         for(var i = 0; i < word.length; i++){
+        //             var letter = word.charAt(i).toLowerCase();
+        //             roundScore += letter_points[letter];
+        //         }
+        //     });
 
-            roundScore *= words.length;
-            score += roundScore;
-            gui.updateScore(score);
+        //     roundScore *= words.length;
+        //     score += roundScore;
+        //     gui.updateScore(score);
             
-            correct_letters  = [];
-            incorrect_letters = [];
-            words = [];
-        } else {
-            // handle clearing mode setup logic here
-        }
+        //     correct_letters  = [];
+        //     incorrect_letters = [];
+        //     words = [];
+        // } else {
+        //     // handle clearing mode setup logic here
+        // }
+        clearWords();
     }
 
     var thickness = 1
@@ -356,71 +357,78 @@ TurbulenzEngine.onload = function onloadFn()
     }
 
     function handleKeyDown(e) {
+        // press space
         if (e == 402) {
-	    neighbors = {};
-	    for (var i = 0; i < 13; i++){
-		for (var j = 0; j < 13; j++){
-		    if (grid_neighbors[i][j] != -1){
-		    	neighbors[grid_neighbors[i][j]] = [];
-		    }
+            clearWords();
+        }
+    }
+
+    function clearWords() {
+	neighbors = {};
+	for (var i = 0; i < 13; i++){
+	    for (var j = 0; j < 13; j++){
+		if (grid_neighbors[i][j] != -1){
+		    neighbors[grid_neighbors[i][j]] = [];
 		}
-	     }
-	     for (var i = 0; i < 12; i++){
-		 for (var j = 0; j < 12; j++){
-		    if (grid_neighbors[i][j] != -1){
-			if (i != 12 && grid_neighbors[i+1][j] != -1){
-			   neighbors[grid_neighbors[i][j]].push(grid_neighbors[i+1][j]);
-			   neighbors[grid_neighbors[i+1][j]].push(grid_neighbors[i][j]);
-			}
-			if (j != 12 && grid_neighbors[i][j+1] != -1){
-			   neighbors[grid_neighbors[i][j]].push(grid_neighbors[i][j+1]);
-			   neighbors[grid_neighbors[i][j+1]].push(grid_neighbors[i][j]);
-	 
-			}
+	    }
+	}
+	for (var i = 0; i < 12; i++){
+	    for (var j = 0; j < 12; j++){
+		if (grid_neighbors[i][j] != -1){
+		    if (i != 12 && grid_neighbors[i+1][j] != -1){
+			neighbors[grid_neighbors[i][j]].push(grid_neighbors[i+1][j]);
+			neighbors[grid_neighbors[i+1][j]].push(grid_neighbors[i][j]);
+		    }
+		    if (j != 12 && grid_neighbors[i][j+1] != -1){
+			neighbors[grid_neighbors[i][j]].push(grid_neighbors[i][j+1]);
+			neighbors[grid_neighbors[i][j+1]].push(grid_neighbors[i][j]);
+	                
 		    }
 		}
 	    }
-            checkWordsAll(neighbors);
-            var letters_to_delete = []
-            lettersWords.forEach(function(lid) {
-                letters_to_delete = letters_to_delete.concat(lid.split(","));
-            });
-            /* current naive scoring algorithm:
-               give player points for every letter in every word
-               (even overlapping ones).
-               Then give multiplier bonus based on *quantity*
-               of words made that round.
-            */
-            var roundScore = 0;
-            wordsWords.forEach(function(word){
-                for(var i = 0; i < word.length; i++){
-                    var letter = word.charAt(i).toLowerCase();
-                    roundScore += letter_points[letter];
-                }
-                gui.addWord(word);
-            });
+	}
 
-            roundScore *= wordsWords.length;
-            score += roundScore;
-            gui.updateScore(score);
-            lettersWords = [];
-            wordsWords   = [];
-            letters_to_delete = letters_to_delete.filter(function(elem, pos) {
-                return letters_to_delete.indexOf(elem) == pos;
-            })
-            letters_to_delete.forEach(function(lid) {
-                if (lid in letters){
-                    world.removeRigidBody(letters[lid].rigidBody);
-                    delete letters[lid];
-                    // make neighbors dynamic once more.
-                    neighbors[lid].forEach(function(nid){
-                        if (nid in letters){
-                            letters[nid].makeDynamic();
-                        }
-                    });
-                }
-            });
-        }
+        checkWordsAll(neighbors);
+        var letters_to_delete = []
+        lettersWords.forEach(function(lid) {
+            letters_to_delete = letters_to_delete.concat(lid.split(","));
+        });
+        /* current naive scoring algorithm:
+           give player points for every letter in every word
+           (even overlapping ones).
+           Then give multiplier bonus based on *quantity*
+           of words made that round.
+        */
+        var roundScore = 0;
+        wordsWords.forEach(function(word){
+            for(var i = 0; i < word.length; i++){
+                var letter = word.charAt(i).toLowerCase();
+                roundScore += letter_points[letter];
+            }
+            gui.addWord(word);
+        });
+
+        roundScore *= wordsWords.length;
+        score += roundScore;
+        gui.updateScore(score);
+        lettersWords = [];
+        wordsWords   = [];
+
+        letters_to_delete = letters_to_delete.filter(function(elem, pos) {
+            return letters_to_delete.indexOf(elem) == pos;
+        })
+        letters_to_delete.forEach(function(lid) {
+            if (lid in letters){
+                world.removeRigidBody(letters[lid].rigidBody);
+                delete letters[lid];
+                // make neighbors dynamic once more.
+                neighbors[lid].forEach(function(nid){
+                    if (nid in letters){
+                        letters[nid].makeDynamic();
+                    }
+                });
+            }
+        });
     }
 
 
