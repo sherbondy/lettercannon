@@ -6,6 +6,7 @@ var nextLetterObj;
 // interface letterIDMap { [id: number]: Letter; }
 var letters = {};
 var neighbors = {};
+var grid_neighbors = (function(grid_neighbors){ while(grid_neighbors.push([-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]) < 13); return grid_neighbors})([]);
 var words = [];
 var letterBucket;
 var letterRadius = 21;

@@ -223,21 +223,22 @@ TurbulenzEngine.onload = function onloadFn()
                    //checkWordsGroup(neighbors, idA);
                 }
 
-		console.log(arb.bodyB._data[2]+" "+arb.bodyB._data[3]);
 		var y_val = arb.bodyB._data[3];
 		var w = 40;
 		var h = 40;
 		arb.bodyB._data[3] = y_val-(y_val%h)+h/2;
 		var x_val = arb.bodyB._data[2];
 		arb.bodyB._data[2] = x_val-(x_val%w)+((y_val-y_val%h)/h)%1 + w/2; 
-//		arb.bodyB._data[2] = x_val-(x_val%w)+w/2;
+
+// Uncomment for hex grid
 /*		if (arb.bodyB._data[2]%(w*2) != w/2){
 		    console.log("this happened");
 		    arb.bodyB._data[3] += h/2;
-		} */
+	 }	*/
+
 		arb.bodyA.setAsStatic();
                 arb.bodyB.setAsStatic();
-		
+	        grid_neighbors[arb.bodyB._data[2]/w+0.5][arb.bodyB._data[3]/h+0.5] = arb.shapeB.userData.id;	
                 // Maybe we should just make the cannon a physics body too instead
                 // of manually checking these private _data attrs?
                 // Currently exploiting an impl. detail of turbulenz which could change...
@@ -356,6 +357,29 @@ TurbulenzEngine.onload = function onloadFn()
 
     function handleKeyDown(e) {
         if (e == 402) {
+	    neighbors = {};
+	    for (var i = 0; i < 13; i++){
+		for (var j = 0; j < 13; j++){
+		    if (grid_neighbors[i][j] != -1){
+		    	neighbors[grid_neighbors[i][j]] = [];
+		    }
+		}
+	     }
+	     for (var i = 0; i < 12; i++){
+		 for (var j = 0; j < 12; j++){
+		    if (grid_neighbors[i][j] != -1){
+			if (i != 12 && grid_neighbors[i+1][j] != -1){
+			   neighbors[grid_neighbors[i][j]].push(grid_neighbors[i+1][j]);
+			   neighbors[grid_neighbors[i+1][j]].push(grid_neighbors[i][j]);
+			}
+			if (j != 12 && grid_neighbors[i][j+1] != -1){
+			   neighbors[grid_neighbors[i][j]].push(grid_neighbors[i][j+1]);
+			   neighbors[grid_neighbors[i][j+1]].push(grid_neighbors[i][j]);
+	 
+			}
+		    }
+		}
+	    }
             checkWordsAll(neighbors);
             var letters_to_delete = []
             lettersWords.forEach(function(lid) {
