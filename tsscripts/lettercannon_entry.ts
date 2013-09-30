@@ -219,9 +219,21 @@ TurbulenzEngine.onload = function onloadFn()
 		   neighbors[idB].push(idA);
 		}
 
-                arb.bodyA.setAsStatic();
+		console.log(arb.bodyB._data[2]+" "+arb.bodyB._data[3]);
+		var y_val = arb.bodyB._data[3];
+		var w = 40;
+		var h = 40;
+		arb.bodyB._data[3] = y_val-(y_val%h)+h/2;
+		var x_val = arb.bodyB._data[2];
+		arb.bodyB._data[2] = x_val-(x_val%w)+((y_val-y_val%h)/h)%1 + w/2; 
+//		arb.bodyB._data[2] = x_val-(x_val%w)+w/2;
+/*		if (arb.bodyB._data[2]%(w*2) != w/2){
+		    console.log("this happened");
+		    arb.bodyB._data[3] += h/2;
+		} */
+		arb.bodyA.setAsStatic();
                 arb.bodyB.setAsStatic();
-
+		
                 // Maybe we should just make the cannon a physics body too instead
                 // of manually checking these private _data attrs?
                 // Currently exploiting an impl. detail of turbulenz which could change...
