@@ -204,12 +204,12 @@ class LetterGenerator {
             total += freq;
             this.freq_array.push(total);
         }
-        console.log(this.freq_array);
+        //console.log(this.freq_array);
     }
 
     generate(): string {
         var num = Math.random();
-        console.log(num);
+        //console.log(num);
         for (var i = 0, len = this.freq_array.length; i < len; i++) {
             if (this.freq_array[i] > num){
                 return this.letter_string[i];

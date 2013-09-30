@@ -78,6 +78,8 @@ TurbulenzEngine.onload = function onloadFn()
     inputDevice.addEventListener('touchmove', handleTouchMove);
     inputDevice.addEventListener('touchend', handleTouchEnd);
 
+    inputDevice.addEventListener('keydown', handleKeyDown);
+
     var stageWidth = canvas.width; //meters
     var stageHeight = canvas.height - 64; //meters
 
@@ -211,13 +213,15 @@ TurbulenzEngine.onload = function onloadFn()
                 if (!arb.active){
                     continue;
                 }
-		// Add colliding bubbles to the neighbors array
-		if (isLetterShape(arb.shapeA) && isLetterShape(arb.shapeB)) {
-                    var idA = arb.shapeA.userData.id;
-                    var idB = arb.shapeB.userData.id;
-		   neighbors[idA].push(idB);
-		   neighbors[idB].push(idA);
-		}
+
+                // Add colliding bubbles to the neighbors array
+                if (isLetterShape(arb.shapeA) && isLetterShape(arb.shapeB)) {
+                            var idA = arb.shapeA.userData.id;
+                            var idB = arb.shapeB.userData.id;
+                   neighbors[idA].push(idB);
+                   neighbors[idB].push(idA);
+                   //checkWordsGroup(neighbors, idA);
+                }
 
                 arb.bodyA.setAsStatic();
                 arb.bodyB.setAsStatic();
@@ -250,23 +254,6 @@ TurbulenzEngine.onload = function onloadFn()
                 if (ctx.beginFrame(graphicsDevice, canvasBox)){
                     // draw the laser line
                     laserPointer.draw(ctx, cannon);
-
-                    // This WAS a double circle to indicate
-                    // where the player will lose, but it
-                    // isn't necessary. Leaving here just in
-                    // case we want it for aesthetic reasons?
-                    // ctx.save()
-                    // ctx.beginPath();
-                    // ctx.strokeStyle = 'gray';
-                    // ctx.arc(center_width, center_height,
-                    //         67, 0, PI2, false);
-                    // ctx.stroke();
-                    // ctx.beginPath();
-                    // ctx.strokeStyle = 'gray';
-                    // ctx.arc(center_width, center_height,
-                    //         70, 0, PI2, false);
-                    // ctx.stroke();
-                    // ctx.restore();
 
                     ctx.endFrame();
                 }
@@ -354,6 +341,52 @@ TurbulenzEngine.onload = function onloadFn()
     function handleDown(mouseCode, mouseX, mouseY) {
         mouse_down = true;
     }
+
+    function handleKeyDown(e) {
+        if (e == 402) {
+            checkWordsAll(neighbors);
+            var letters_to_delete = []
+            lettersWords.forEach(function(lid) {
+                letters_to_delete = letters_to_delete.concat(lid.split(","));
+            });
+            /* current naive scoring algorithm:
+               give player points for every letter in every word
+               (even overlapping ones).
+               Then give multiplier bonus based on *quantity*
+               of words made that round.
+            */
+            var roundScore = 0;
+            wordsWords.forEach(function(word){
+                for(var i = 0; i < word.length; i++){
+                    var letter = word.charAt(i).toLowerCase();
+                    roundScore += letter_points[letter];
+                }
+                gui.addWord(word);
+            });
+
+            roundScore *= wordsWords.length;
+            score += roundScore;
+            gui.updateScore(score);
+            lettersWords = [];
+            wordsWords   = [];
+            letters_to_delete = letters_to_delete.filter(function(elem, pos) {
+                return letters_to_delete.indexOf(elem) == pos;
+            })
+            letters_to_delete.forEach(function(lid) {
+                if (lid in letters){
+                    world.removeRigidBody(letters[lid].rigidBody);
+                    delete letters[lid];
+                    // make neighbors dynamic once more.
+                    neighbors[lid].forEach(function(nid){
+                        if (nid in letters){
+                            letters[nid].makeDynamic();
+                        }
+                    });
+                }
+            });
+        }
+    }
+
 
     // 60 fps
     restartGame();
